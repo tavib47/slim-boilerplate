@@ -11,7 +11,7 @@
 }
 
 .cookie-content {
-    max-width: map-get($container-max-widths, xxl);
+    max-width: var(--bs-breakpoint-xxl, 1400px);
     margin: 0 auto;
     display: flex;
     justify-content: space-between;

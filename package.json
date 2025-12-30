@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "sass:build": "sass --load-path=node_modules scss/style.scss public/css/style.css --style=compressed --no-source-map",
-    "sass:dev": "sass --load-path=node_modules scss/style.scss public/css/style.css --style=expanded",
-    "sass:watch": "sass --load-path=node_modules scss/style.scss public/css/style.css --style=expanded --watch"
+    "sass:build": "sass --load-path=node_modules --quiet-deps --silence-deprecation=import scss/style.scss public/css/style.css --style=compressed --no-source-map",
+    "sass:dev": "sass --load-path=node_modules --quiet-deps --silence-deprecation=import scss/style.scss public/css/style.css --style=expanded",
+    "sass:watch": "sass --load-path=node_modules --quiet-deps --silence-deprecation=import scss/style.scss public/css/style.css --style=expanded --watch"
   },
   "devDependencies": {
     "sass": "^1.77.0"
