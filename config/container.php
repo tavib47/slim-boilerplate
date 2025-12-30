@@ -8,10 +8,10 @@ use DI\Container;
 use Psr\Container\ContainerInterface;
 use Slim\Views\Twig;
 
-return function (Container $container, array $settings): void {
+return static function (Container $container, array $settings): void {
     $container->set('settings', $settings);
 
-    $container->set(Twig::class, function (ContainerInterface $c): Twig {
+    $container->set(Twig::class, static function (ContainerInterface $c): Twig {
         $settings = $c->get('settings');
         $debug = $settings['app']['debug'];
 
@@ -21,7 +21,7 @@ return function (Container $container, array $settings): void {
         ]);
     });
 
-    $container->set(PDO::class, function (ContainerInterface $c): PDO {
+    $container->set(PDO::class, static function (ContainerInterface $c): PDO {
         $settings = $c->get('settings')['database'];
 
         $dsn = sprintf(
@@ -39,12 +39,12 @@ return function (Container $container, array $settings): void {
         ]);
     });
 
-    $container->set(MailService::class, function (ContainerInterface $c): MailService {
+    $container->set(MailService::class, static function (ContainerInterface $c): MailService {
         $settings = $c->get('settings')['mail'];
         return new MailService($settings);
     });
 
-    $container->set(ContactController::class, function (ContainerInterface $c): ContactController {
+    $container->set(ContactController::class, static function (ContainerInterface $c): ContactController {
         return new ContactController(
             $c->get(Twig::class),
             $c->get(MailService::class),

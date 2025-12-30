@@ -7,7 +7,7 @@ use App\Controllers\HomeController;
 use App\Controllers\PageController;
 use Slim\App;
 
-return function (App $app): void {
+return static function (App $app): void {
     $app->get('/', [HomeController::class, 'index'])->setName('home');
     $app->get('/about', [PageController::class, 'about'])->setName('about');
     $app->get('/privacy', [PageController::class, 'privacy'])->setName('privacy');

@@ -22,13 +22,25 @@ fi
 echo ""
 echo "Running PHPCBF..."
 bash -c "$preCommand ./vendor/bin/phpcbf"
-if [ $? -eq 0 ]; then
+phpcbf_exit=$?
+if [ $phpcbf_exit -eq 0 ]; then
   echo -e "${green}PHPCBF completed (no fixes needed).${no_color}"
-elif [ $? -eq 1 ]; then
+elif [ $phpcbf_exit -eq 1 ]; then
   echo -e "${yellow}PHPCBF fixed some issues.${no_color}"
-elif [ $? -eq 2 ]; then
+else
   echo -e "${red}PHPCBF could not fix all issues.${no_color}"
   status=1
+fi
+
+# PHPStan (uses phpstan.neon for configuration)
+echo ""
+echo "Running PHPStan..."
+bash -c "$preCommand ./vendor/bin/phpstan analyse --memory-limit=512M"
+if [ $? -ne 0 ]; then
+  echo -e "${red}PHPStan found issues.${no_color}"
+  status=1
+else
+  echo -e "${green}PHPStan passed.${no_color}"
 fi
 
 echo ""
@@ -36,5 +48,5 @@ if [ $status -ne 0 ]; then
   echo -e "${red}Code checks failed.${no_color}"
   exit 1
 else
-  echo -e "${green}Code checks passed.${no_color}"
+  echo -e "${green}All code checks passed.${no_color}"
 fi

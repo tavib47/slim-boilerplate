@@ -1,0 +1,21 @@
+parameters:
+    level: 6
+    paths:
+        - src
+        - config
+        - public/index.php
+    
+    # Ignore errors in vendor
+    excludePaths:
+        - vendor
+    
+    # Treat phpdoc types as certain
+    treatPhpDocTypesAsCertain: false
+    
+    # Report unmatched ignored errors
+    reportUnmatchedIgnoredErrors: false
+    
+    # Ignore specific errors if needed
+    ignoreErrors:
+        # Ignore missing array value type specifications for settings arrays
+        - identifier: missingType.iterableValue

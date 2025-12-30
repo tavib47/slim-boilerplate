@@ -7,7 +7,7 @@ use Slim\App;
 use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
 
-return function (App $app): void {
+return static function (App $app): void {
     $app->add(SessionMiddleware::class);
     $app->add(TwigMiddleware::createFromContainer($app, Twig::class));
     $app->addBodyParsingMiddleware();

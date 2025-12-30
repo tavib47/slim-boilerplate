@@ -16,4 +16,86 @@
 
     <!-- Use PSR-12 standard -->
     <rule ref="PSR12"/>
+
+    <!-- ==================== -->
+    <!-- Slevomat Coding Standard -->
+    <!-- ==================== -->
+
+    <!-- Type Hints -->
+    <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
+        <properties>
+            <property name="spacesCountAroundEqualsSign" value="0"/>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint">
+        <!-- Disable traversable type specification - too strict for arrays -->
+        <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification"/>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint"/>
+    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHint">
+        <!-- Disable traversable type specification - too strict for arrays -->
+        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification"/>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.UselessConstantTypeHint"/>
+
+    <!-- Unused Code Detection -->
+    <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
+        <properties>
+            <property name="searchAnnotations" value="true"/>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Variables.UnusedVariable">
+        <properties>
+            <property name="ignoreUnusedValuesWhenOnlyKeysAreUsedInForeach" value="true"/>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Functions.UnusedParameter">
+        <!-- Exclude controllers - $request/$response are required by Slim interface -->
+        <exclude-pattern>src/Controllers/*</exclude-pattern>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Namespaces.UseFromSameNamespace"/>
+
+    <!-- Namespaces & Imports -->
+    <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses"/>
+    <rule ref="SlevomatCodingStandard.Namespaces.RequireOneNamespaceInFile"/>
+    <rule ref="SlevomatCodingStandard.Namespaces.NamespaceDeclaration"/>
+    <rule ref="SlevomatCodingStandard.Namespaces.DisallowGroupUse"/>
+    <rule ref="SlevomatCodingStandard.Namespaces.UseDoesNotStartWithBackslash"/>
+
+    <!-- Classes & Methods -->
+    <rule ref="SlevomatCodingStandard.Classes.ClassConstantVisibility"/>
+    <rule ref="SlevomatCodingStandard.Classes.ModernClassNameReference"/>
+    <rule ref="SlevomatCodingStandard.Classes.TraitUseDeclaration"/>
+    <rule ref="SlevomatCodingStandard.Classes.TraitUseSpacing"/>
+
+    <!-- Control Structures -->
+    <rule ref="SlevomatCodingStandard.ControlStructures.DisallowYodaComparison"/>
+    <rule ref="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceOperator"/>
+    <rule ref="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceEqualOperator"/>
+    <rule ref="SlevomatCodingStandard.ControlStructures.UselessIfConditionWithReturn"/>
+    <rule ref="SlevomatCodingStandard.ControlStructures.UselessTernaryOperator"/>
+
+    <!-- Functions -->
+    <rule ref="SlevomatCodingStandard.Functions.StaticClosure"/>
+    <rule ref="SlevomatCodingStandard.Functions.UnusedInheritedVariablePassedToClosure"/>
+    <rule ref="SlevomatCodingStandard.Functions.UselessParameterDefaultValue"/>
+
+    <!-- PHP Features -->
+    <rule ref="SlevomatCodingStandard.PHP.UselessSemicolon"/>
+    <rule ref="SlevomatCodingStandard.PHP.UselessParentheses"/>
+    <rule ref="SlevomatCodingStandard.PHP.OptimizedFunctionsWithoutUnpacking"/>
+    <rule ref="SlevomatCodingStandard.PHP.ShortList"/>
+
+    <!-- Arrays -->
+    <rule ref="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation"/>
+    <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma"/>
+
+    <!-- Exceptions -->
+    <rule ref="SlevomatCodingStandard.Exceptions.DeadCatch"/>
+    <rule ref="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly"/>
+
+    <!-- Commenting -->
+    <rule ref="SlevomatCodingStandard.Commenting.EmptyComment"/>
+    <rule ref="SlevomatCodingStandard.Commenting.UselessFunctionDocComment"/>
+    <rule ref="SlevomatCodingStandard.Commenting.UselessInheritDocComment"/>
 </ruleset>
