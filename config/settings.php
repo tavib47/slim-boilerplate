@@ -36,4 +36,5 @@ return [
         'path' => dirname(__DIR__) . '/templates',
         'cache' => dirname(__DIR__) . '/var/cache',
     ],
+    'locale' => require __DIR__ . '/locales.php',
 ];

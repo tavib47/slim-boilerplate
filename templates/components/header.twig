@@ -1,5 +1,6 @@
 <header class="site-header">
     <div class="container">
-        <a href="/" class="site-logo">Slim App</a>
+        <a href="{{ route_localized('home', locale) }}" class="site-logo">Slim App</a>
+        {% include 'components/language-switcher.twig' %}
     </div>
 </header>

@@ -12,6 +12,7 @@ This is a **Slim Framework 4 boilerplate** with Twig templating, designed for sm
 - **Slim Framework 4** - Micro framework
 - **Twig 3** - Template engine
 - **PHP-DI** - Dependency injection container
+- **Symfony Translation** - i18n with YAML files
 - **PHPMailer** - SMTP email
 - **DDEV** - Local development environment
 
@@ -50,6 +51,7 @@ ddev composer phpstan   # Static analysis
 ```
 config/
 ├── container.php       # DI container definitions
+├── locales.php         # Locale config (languages, route slugs)
 ├── middleware.php      # Middleware stack
 ├── routes.php          # Route definitions
 └── settings.php        # App configuration (loads .env)
@@ -60,14 +62,25 @@ src/
 │   ├── PageController.php      # Static pages (generic)
 │   └── ContactController.php   # Contact form submission
 ├── Middleware/
+│   ├── LocaleMiddleware.php    # URL locale detection
 │   └── SessionMiddleware.php   # Sessions + flash messages
-└── Services/
-    └── MailService.php         # PHPMailer wrapper
+├── Services/
+│   ├── LocaleRouteService.php      # Route-to-slug mapping
+│   ├── LocaleTemplateResolver.php  # Locale-specific templates
+│   ├── MailService.php             # PHPMailer wrapper
+│   └── TranslationService.php      # Symfony translation wrapper
+└── Twig/
+    └── TranslationExtension.php    # trans(), route_localized() functions
 
 templates/
 ├── layouts/base.twig           # Main layout
-├── components/                 # Reusable (header, footer, nav, cookie-banner, flash-messages)
+├── components/                 # Reusable (header, footer, nav, language-switcher, etc.)
 └── pages/                      # Page templates (home, about, contact, privacy)
+    └── {locale}/               # Optional locale-specific overrides
+
+translations/
+├── messages.en.yaml            # English translations
+└── messages.ro.yaml            # Romanian translations
 
 public/
 ├── index.php                   # Entry point
@@ -149,6 +162,8 @@ All config is in `.env` (copy from `.env.example`):
 
 - `APP_ENV` - development/production
 - `APP_DEBUG` - true/false (controls error display, Twig cache)
+- `APP_LOCALE` - Default locale (unprefixed routes)
+- `APP_LOCALES` - Comma-separated supported locales (e.g., `en,ro,de`)
 - `DB_*` - Database connection (use `db` as host for DDEV)
 - `MAIL_*` - SMTP settings (use `localhost:1025` for DDEV MailHog)
 - `CONTACT_EMAIL` - Contact form recipient
@@ -169,9 +184,55 @@ ddev launch -m
 - Templates: `kebab-case.twig` (e.g., `cookie-banner.twig`)
 - Config files: `lowercase.php`
 
+## Multilingual System (i18n)
+
+### URL Structure
+- Default locale: `/about`, `/contact` (no prefix)
+- Other locales: `/ro/despre-noi`, `/ro/contact` (prefixed + translated slugs)
+
+### Adding Route Translations
+
+Edit `config/locales.php`:
+
+```php
+'route_slugs' => [
+    'about' => [
+        'ro' => 'despre-noi',
+        'de' => 'uber-uns',
+    ],
+],
+```
+
+### Adding a New Language
+
+1. Add locale to `APP_LOCALES` in `.env`: `en,ro,de`
+2. Add route slug translations in `config/locales.php`
+3. Create translation file: `translations/messages.de.yaml`
+
+### Twig Functions
+
+```twig
+{{ trans('key.path') }}                    {# Translate string #}
+{{ route_localized('about', 'ro') }}       {# Get /ro/despre-noi #}
+{{ language_switcher_urls('about') }}      {# Get all locale URLs for route #}
+```
+
+### Global Twig Variables
+
+- `locale` - Current locale (e.g., `ro`)
+- `default_locale` - Default locale (e.g., `en`)
+- `supported_locales` - Array of all locales
+
+### Template Override by Locale
+
+Create `templates/pages/{locale}/template.twig` to override for specific locale:
+- `templates/pages/about.twig` - Default (uses `trans()`)
+- `templates/pages/ro/about.twig` - Romanian override (completely custom)
+
 ## Important Notes
 
 1. **Always run code-qa before committing** - pre-commit hooks enforce this
 2. **Twig cache** is disabled in development (`APP_DEBUG=true`)
 3. **PDO connection** is lazy-loaded - only connects when used
 4. **Static closures** are enforced in config files for performance
+5. **Route group callbacks** cannot be static (Slim requirement) - use phpcs:ignore comment

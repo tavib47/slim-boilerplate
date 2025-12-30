@@ -1,0 +1,16 @@
+{# Language switcher component #}
+{# Usage: {% include 'components/language-switcher.twig' %} #}
+{# Requires 'current_route' variable to be passed from controller #}
+
+{% set urls = language_switcher_urls(current_route|default('home')) %}
+
+<nav class="language-switcher" aria-label="Language selection">
+    {% for lang_code, url in urls %}
+        {% if lang_code == locale %}
+            <span class="lang-item lang-current" aria-current="true">{{ lang_code|upper }}</span>
+        {% else %}
+            <a href="{{ url }}" class="lang-item lang-link" hreflang="{{ lang_code }}">{{ lang_code|upper }}</a>
+        {% endif %}
+        {% if not loop.last %}<span class="lang-separator">|</span>{% endif %}
+    {% endfor %}
+</nav>

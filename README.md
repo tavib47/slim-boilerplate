@@ -133,6 +133,7 @@ ddev exec vendor/bin/cghooks remove   # Remove hooks
 | **Slim Framework 4** | Fast, minimal PHP micro-framework |
 | **Twig 3** | Secure template engine with inheritance and components |
 | **PHP-DI** | Autowiring dependency injection container |
+| **Multilingual (i18n)** | URL-based locale detection, translated routes, YAML translations |
 | **Session Management** | PHP sessions with flash messages |
 | **Contact Form** | Ready-to-use form with SMTP email (PHPMailer) |
 | **GDPR Cookie Banner** | Cookie consent with localStorage |
@@ -169,6 +170,83 @@ MAIL_FROM_ADDRESS=...    # From email address
 MAIL_FROM_NAME=...       # From name
 CONTACT_EMAIL=...        # Contact form recipient
 ```
+
+### Localization
+```env
+APP_LOCALE=en            # Default locale (unprefixed routes)
+APP_LOCALES=en,ro        # Comma-separated list of supported locales
+```
+
+## Multilingual Support (i18n)
+
+The boilerplate includes a complete internationalization system with URL-based locale detection and translated routes.
+
+### URL Structure
+
+- Default locale has no prefix: `/about`, `/contact`
+- Other locales are prefixed: `/ro/despre-noi`, `/ro/contact`
+
+### Configuration
+
+Configure languages in `config/locales.php`:
+
+```php
+return [
+    'default_locale' => 'en',
+    'supported_locales' => ['en', 'ro'],
+    'fallback_locales' => ['en'],
+    'translations_path' => dirname(__DIR__) . '/translations',
+
+    // Translated URL slugs
+    'route_slugs' => [
+        'about' => [
+            'ro' => 'despre-noi',
+        ],
+        'privacy' => [
+            'ro' => 'confidentialitate',
+        ],
+    ],
+];
+```
+
+### Translation Files
+
+Translations are stored in YAML files in the `translations/` directory:
+
+```yaml
+# translations/messages.en.yaml
+nav:
+  home: "Home"
+  about: "About"
+
+pages:
+  about:
+    title: "About Us"
+```
+
+### Using Translations in Templates
+
+```twig
+{# Basic translation #}
+<h1>{{ trans('pages.about.title') }}</h1>
+
+{# Navigation with localized URLs #}
+<a href="{{ route_localized('about', locale) }}">{{ trans('nav.about') }}</a>
+
+{# Language switcher (automatically included in header) #}
+{% include 'components/language-switcher.twig' %}
+```
+
+### Locale-Specific Template Overrides
+
+You can override templates for specific locales by placing them in a locale subdirectory:
+
+```
+templates/pages/about.twig           # Default template (uses trans())
+templates/pages/ro/about.twig        # Romanian override (completely custom)
+```
+
+The system checks for `pages/{locale}/template.twig` first, then falls back to `pages/template.twig`.
 
 ## MailHog (Email Testing)
 
