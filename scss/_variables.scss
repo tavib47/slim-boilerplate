@@ -1,25 +1,2 @@
 // Bootstrap variable overrides (must be defined before importing Bootstrap)
 // See: https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss
-
-// Theme colors
-$primary: #0066cc;
-$secondary: #6c757d;
-$dark: #1a1a2e;
-
-// Custom colors (not Bootstrap variables)
-$dark-alt: #16213e;
-$link-light: #90caf9;
-
-// Typography - using Bootstrap's default system font stack
-
-// Container
-$container-max-widths: (
-    sm: 540px,
-    md: 720px,
-    lg: 960px,
-    xl: 1140px,
-    xxl: 1200px
-);
-
-// Custom variables for site-specific styles
-$content-max-width: 800px;
