@@ -13,8 +13,8 @@ return static function (App $app): void {
     // Static pages - template is derived from URL path (e.g., /about -> pages/about.twig)
     $app->get('/about', [PageController::class, 'show'])->setName('about');
     $app->get('/privacy', [PageController::class, 'show'])->setName('privacy');
+    $app->get('/contact', [PageController::class, 'show'])->setName('contact');
 
-    // Contact form
-    $app->get('/contact', [ContactController::class, 'show'])->setName('contact');
+    // Contact form submission
     $app->post('/contact', [ContactController::class, 'submit'])->setName('contact.submit');
 };

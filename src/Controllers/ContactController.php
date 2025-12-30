@@ -9,22 +9,13 @@ use App\Services\MailService;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Routing\RouteContext;
-use Slim\Views\Twig;
 
 class ContactController
 {
     public function __construct(
-        private readonly Twig $twig,
         private readonly MailService $mailService,
         private readonly array $settings
     ) {
-    }
-
-    public function show(Request $request, Response $response): Response
-    {
-        return $this->twig->render($response, 'pages/contact.twig', [
-            'flash' => SessionMiddleware::getFlash(),
-        ]);
     }
 
     public function submit(Request $request, Response $response): Response

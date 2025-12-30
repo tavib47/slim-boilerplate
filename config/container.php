@@ -46,7 +46,6 @@ return static function (Container $container, array $settings): void {
 
     $container->set(ContactController::class, static function (ContainerInterface $c): ContactController {
         return new ContactController(
-            $c->get(Twig::class),
             $c->get(MailService::class),
             $c->get('settings')
         );
