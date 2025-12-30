@@ -1,5 +1,5 @@
 {
-    "name": "your-vendor/slim-boilerplate",
+    "name": "tavib47/slim-boilerplate",
     "description": "Slim Framework 4 boilerplate with Twig templating",
     "type": "project",
     "license": "MIT",
@@ -13,6 +13,7 @@
         "phpmailer/phpmailer": "^6.9"
     },
     "require-dev": {
+        "brainmaestro/composer-git-hooks": "^3.0",
         "phpstan/extension-installer": "*",
         "phpstan/phpstan": "*",
         "slevomat/coding-standard": "*",
@@ -32,10 +33,18 @@
         }
     },
     "scripts": {
-        "start": "php -S localhost:8080 -t public",
+        "post-install-cmd": [
+            "bash -c 'vendor/bin/cghooks update > /dev/null 2>&1 || true'"
+        ],
+        "install": "scripts/install.sh",
         "phpcs": "phpcs",
         "phpcbf": "phpcbf",
         "phpstan": "phpstan analyse",
         "code-qa": "scripts/code-qa.sh"
+    },
+    "extra": {
+        "hooks": {
+            "pre-commit": "scripts/code-qa.sh"
+        }
     }
 }
