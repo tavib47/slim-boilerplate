@@ -21,11 +21,18 @@ class MailService
         try {
             $mail->isSMTP();
             $mail->Host = $this->settings['host'];
-            $mail->SMTPAuth = true;
-            $mail->Username = $this->settings['username'];
-            $mail->Password = $this->settings['password'];
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = $this->settings['port'];
+
+            // Only enable auth if credentials are provided
+            if (!empty($this->settings['username'])) {
+                $mail->SMTPAuth = true;
+                $mail->Username = $this->settings['username'];
+                $mail->Password = $this->settings['password'];
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            } else {
+                $mail->SMTPAuth = false;
+                $mail->SMTPSecure = '';
+            }
 
             $mail->setFrom($this->settings['from_address'], $this->settings['from_name']);
             $mail->addAddress($to);

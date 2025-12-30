@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Middleware\SessionMiddleware;
 use App\Services\MailService;
+use App\Services\TranslationService;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Routing\RouteContext;
@@ -14,6 +15,7 @@ class ContactController
 {
     public function __construct(
         private readonly MailService $mailService,
+        private readonly TranslationService $translator,
         private readonly array $settings
     ) {
     }
@@ -29,21 +31,26 @@ class ContactController
         $errors = [];
 
         if (empty($name)) {
-            $errors[] = 'Name is required.';
+            $errors[] = $this->translator->trans('validation.name_required');
         }
 
         if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors[] = 'A valid email address is required.';
+            $errors[] = $this->translator->trans('validation.email_required');
         }
 
         if (empty($message)) {
-            $errors[] = 'Message is required.';
+            $errors[] = $this->translator->trans('validation.message_required');
         }
 
         if (!empty($errors)) {
             foreach ($errors as $error) {
                 SessionMiddleware::flash('error', $error);
             }
+            SessionMiddleware::setFormData([
+                'name' => $name,
+                'email' => $email,
+                'message' => $message,
+            ]);
             return $this->redirectToRoute($request, $response, 'contact');
         }
 
@@ -54,9 +61,14 @@ class ContactController
         $sent = $this->mailService->send($recipientEmail, $subject, $body, $email);
 
         if ($sent) {
-            SessionMiddleware::flash('success', 'Thank you for your message. We will get back to you soon.');
+            SessionMiddleware::flash('success', $this->translator->trans('flash.contact_success'));
         } else {
-            SessionMiddleware::flash('error', 'Failed to send message. Please try again later.');
+            SessionMiddleware::setFormData([
+              'name' => $name,
+              'email' => $email,
+              'message' => $message,
+            ]);
+            SessionMiddleware::flash('error', $this->translator->trans('flash.contact_error'));
         }
 
         return $this->redirectToRoute($request, $response, 'contact');
@@ -78,6 +90,14 @@ class ContactController
 
     private function redirectToRoute(Request $request, Response $response, string $routeName): Response
     {
+        $locale = $request->getAttribute('locale', 'en');
+        $defaultLocale = $request->getAttribute('default_locale', 'en');
+
+        // Use locale-suffixed route name for non-default locales
+        if ($locale !== $defaultLocale) {
+            $routeName .= '.' . $locale;
+        }
+
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
         $url = $routeParser->urlFor($routeName);
 

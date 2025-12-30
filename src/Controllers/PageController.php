@@ -44,6 +44,7 @@ class PageController
 
         return $this->twig->render($response, $templatePath, [
             'flash' => SessionMiddleware::getFlash(),
+            'form_data' => SessionMiddleware::getFormData(),
             'current_route' => $baseRouteName,
         ]);
     }

@@ -31,4 +31,22 @@ class SessionMiddleware implements MiddlewareInterface
         unset($_SESSION['flash']);
         return $flash;
     }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public static function setFormData(array $data): void
+    {
+        $_SESSION['form_data'] = $data;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public static function getFormData(): array
+    {
+        $data = $_SESSION['form_data'] ?? [];
+        unset($_SESSION['form_data']);
+        return $data;
+    }
 }

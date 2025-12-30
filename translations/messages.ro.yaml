@@ -13,6 +13,11 @@ flash:
   contact_success: "Mulțumim pentru mesaj. Vă vom contacta în curând."
   contact_error: "Mesajul nu a putut fi trimis. Vă rugăm încercați din nou."
 
+validation:
+  name_required: "Numele este obligatoriu."
+  email_required: "O adresă de email validă este obligatorie."
+  message_required: "Mesajul este obligatoriu."
+
 common:
   submit: "Trimite"
   send: "Trimite"

@@ -94,6 +94,7 @@ return static function (Container $container, array $settings): void {
     $container->set(ContactController::class, static function (ContainerInterface $c): ContactController {
         return new ContactController(
             $c->get(MailService::class),
+            $c->get(TranslationService::class),
             $c->get('settings')
         );
     });
