@@ -1,0 +1,177 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/claude-code) when working with this repository.
+
+## Project Overview
+
+This is a **Slim Framework 4 boilerplate** with Twig templating, designed for small to medium PHP projects. It uses DDEV for local development and includes pre-configured code quality tools.
+
+## Tech Stack
+
+- **PHP 8.4+**
+- **Slim Framework 4** - Micro framework
+- **Twig 3** - Template engine
+- **PHP-DI** - Dependency injection container
+- **PHPMailer** - SMTP email
+- **DDEV** - Local development environment
+
+## Development Environment
+
+This project uses DDEV. All commands should be run through DDEV:
+
+```bash
+ddev start              # Start environment
+ddev composer <cmd>     # Run Composer
+ddev exec <cmd>         # Execute commands in container
+ddev launch             # Open in browser
+ddev mysql              # Database CLI
+```
+
+## Code Quality Commands
+
+```bash
+# Run all checks (PHPCS, PHPCBF, PHPStan)
+./scripts/code-qa.sh
+
+# Individual tools
+ddev composer phpcs     # Check code style
+ddev composer phpcbf    # Auto-fix code style
+ddev composer phpstan   # Static analysis
+```
+
+### Standards
+
+- **PSR-12** with **Slevomat Coding Standard** (strict type hints, unused code detection)
+- **PHPStan Level 6**
+- Pre-commit hooks run automatically via `brainmaestro/composer-git-hooks`
+
+## Project Structure
+
+```
+config/
+├── container.php       # DI container definitions
+├── middleware.php      # Middleware stack
+├── routes.php          # Route definitions
+└── settings.php        # App configuration (loads .env)
+
+src/
+├── Controllers/
+│   ├── HomeController.php      # Homepage
+│   ├── PageController.php      # Static pages (generic)
+│   └── ContactController.php   # Contact form submission
+├── Middleware/
+│   └── SessionMiddleware.php   # Sessions + flash messages
+└── Services/
+    └── MailService.php         # PHPMailer wrapper
+
+templates/
+├── layouts/base.twig           # Main layout
+├── components/                 # Reusable (header, footer, nav, cookie-banner, flash-messages)
+└── pages/                      # Page templates (home, about, contact, privacy)
+
+public/
+├── index.php                   # Entry point
+├── css/style.css               # Styles
+└── js/app.js                   # Cookie consent JS
+```
+
+## Key Patterns
+
+### Static Pages
+
+`PageController::show()` handles all static pages. The template is derived from the URL path:
+
+```php
+// routes.php - just add the route
+$app->get('/terms', [PageController::class, 'show'])->setName('terms');
+
+// Create templates/pages/terms.twig - done!
+```
+
+### Adding Routes
+
+Routes are defined in `config/routes.php`:
+
+```php
+// Static page
+$app->get('/my-page', [PageController::class, 'show'])->setName('my-page');
+
+// With controller method
+$app->get('/custom', [MyController::class, 'index'])->setName('custom');
+$app->post('/custom', [MyController::class, 'submit'])->setName('custom.submit');
+```
+
+### Dependency Injection
+
+Services are registered in `config/container.php`. PHP-DI autowires most dependencies, but complex services need explicit registration:
+
+```php
+$container->set(MyService::class, static function (ContainerInterface $c): MyService {
+    return new MyService($c->get('settings')['my_config']);
+});
+```
+
+### Flash Messages
+
+```php
+// Set flash message
+SessionMiddleware::flash('success', 'Operation completed.');
+SessionMiddleware::flash('error', 'Something went wrong.');
+
+// Get and clear flash messages (in controller)
+$flash = SessionMiddleware::getFlash();
+```
+
+### Twig Templates
+
+Templates extend the base layout:
+
+```twig
+{% extends 'layouts/base.twig' %}
+
+{% block title %}Page Title{% endblock %}
+{% block meta_description %}SEO description{% endblock %}
+
+{% block content %}
+    <h1>Content here</h1>
+{% endblock %}
+```
+
+Include components:
+
+```twig
+{% include 'components/header.twig' %}
+```
+
+## Configuration
+
+All config is in `.env` (copy from `.env.example`):
+
+- `APP_ENV` - development/production
+- `APP_DEBUG` - true/false (controls error display, Twig cache)
+- `DB_*` - Database connection (use `db` as host for DDEV)
+- `MAIL_*` - SMTP settings (use `localhost:1025` for DDEV MailHog)
+- `CONTACT_EMAIL` - Contact form recipient
+
+## Testing Email
+
+DDEV includes MailHog. View captured emails:
+
+```bash
+ddev launch -m
+```
+
+## File Naming Conventions
+
+- Controllers: `PascalCase` + `Controller` suffix (e.g., `PageController.php`)
+- Services: `PascalCase` + `Service` suffix (e.g., `MailService.php`)
+- Middleware: `PascalCase` + `Middleware` suffix
+- Templates: `kebab-case.twig` (e.g., `cookie-banner.twig`)
+- Config files: `lowercase.php`
+
+## Important Notes
+
+1. **Always run code-qa before committing** - pre-commit hooks enforce this
+2. **Twig cache** is disabled in development (`APP_DEBUG=true`)
+3. **PDO connection** is lazy-loaded - only connects when used
+4. **Static closures** are enforced in config files for performance
