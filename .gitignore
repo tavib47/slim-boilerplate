@@ -1,0 +1,25 @@
+# Dependencies
+/vendor/
+
+# Environment
+.env
+
+# Cache
+/var/cache/*
+!/var/cache/.gitkeep
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Composer
+composer.lock

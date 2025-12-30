@@ -1,0 +1,11 @@
+{% if flash is defined and flash is not empty %}
+    <div class="flash-messages">
+        {% for type, messages in flash %}
+            {% for message in messages %}
+                <div class="flash flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endif %}
