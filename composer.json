@@ -36,7 +36,6 @@
         "post-install-cmd": [
             "bash -c 'vendor/bin/cghooks update > /dev/null 2>&1 || true'"
         ],
-        "install": "scripts/install.sh",
         "phpcs": "phpcs",
         "phpcbf": "phpcbf",
         "phpstan": "phpstan analyse",

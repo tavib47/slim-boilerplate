@@ -1,83 +1,232 @@
 # Slim Framework Boilerplate
 
-A modern PHP boilerplate built with Slim Framework 4 and Twig templating.
+A modern PHP boilerplate built with Slim Framework 4 and Twig templating, pre-configured with DDEV for local development and code quality tools.
 
-## Requirements
+## Quick Start
 
-- PHP 8.4+
-- Composer
-
-## Installation
-
-1. Clone the repository
-2. Install dependencies:
+1. Clone the repository:
    ```bash
-   composer install
+   git clone https://github.com/tavib47/slim-boilerplate.git my-project
+   cd my-project
    ```
-3. Copy the environment file and configure it:
+
+2. Copy environment configuration:
    ```bash
    cp .env.example .env
    ```
-4. Edit `.env` with your settings (database, SMTP, etc.)
 
-## Development Server
+3. Start DDEV and install dependencies:
+   ```bash
+   ./scripts/install.sh
+   ```
 
-Start the built-in PHP development server:
+4. Open in browser:
+   ```bash
+   ddev launch
+   ```
+
+## Prerequisites
+
+- [DDEV](https://ddev.readthedocs.io/en/stable/) v1.22.0 or higher
+- [Docker](https://www.docker.com/) (or alternative like OrbStack, Colima)
+- [mkcert](https://github.com/FiloSottile/mkcert) (for local SSL certificates)
+
+## Project Setup
+
+Before starting development, configure these files:
+
+| File | Purpose |
+|------|---------|
+| `.env` | Environment variables (database, mail, app settings) |
+| `.ddev/config.yaml` | DDEV project configuration |
+| `composer.json` | Update project name and description |
+
+## Development Workflow
+
+### Starting and Stopping
 
 ```bash
-composer start
+ddev start          # Start the development environment
+ddev stop           # Stop containers
+ddev restart        # Restart containers
+ddev launch         # Open site in browser
 ```
 
-Then visit http://localhost:8080
+### Running Commands
+
+```bash
+ddev composer <cmd>     # Run Composer commands
+ddev exec <cmd>         # Execute commands in the container
+ddev ssh                # SSH into the web container
+```
+
+### Database Access
+
+```bash
+ddev mysql              # Open MySQL CLI
+ddev sequelace          # Open Sequel Ace (macOS)
+ddev tableplus          # Open TablePlus
+```
+
+## Code Quality Tools
+
+This boilerplate includes pre-configured code quality tools that run automatically on commit.
+
+### Available Commands
+
+```bash
+./scripts/code-qa.sh    # Run all checks (PHPCS, PHPCBF, PHPStan)
+ddev composer phpcs     # Run PHP CodeSniffer
+ddev composer phpcbf    # Run PHP Code Beautifier (auto-fix)
+ddev composer phpstan   # Run PHPStan static analysis
+```
+
+### Standards
+
+- **PSR-12** - PHP coding standard
+- **Slevomat Coding Standard** - Additional strict rules (type hints, unused code detection, etc.)
+- **PHPStan Level 6** - Static analysis
+
+### Git Hooks
+
+Pre-commit hooks are automatically configured via `composer install`. They run all code quality checks before each commit.
+
+```bash
+ddev exec vendor/bin/cghooks update   # Update hooks
+ddev exec vendor/bin/cghooks remove   # Remove hooks
+```
 
 ## Project Structure
 
 ```
-├── config/              # Configuration files
-│   ├── container.php    # DI container setup
-│   ├── middleware.php   # Middleware registration
-│   ├── routes.php       # Route definitions
-│   └── settings.php     # Application settings
-├── public/              # Web root
-│   ├── css/            # Stylesheets
-│   ├── js/             # JavaScript files
-│   └── index.php       # Entry point
-├── src/                 # Application source code
-│   ├── Controllers/    # Request handlers
-│   ├── Middleware/     # HTTP middleware
-│   └── Services/       # Business logic services
-├── templates/           # Twig templates
-│   ├── components/     # Reusable components
-│   ├── layouts/        # Base layouts
-│   └── pages/          # Page templates
-└── var/                 # Runtime files (cache, logs)
+├── config/                  # Configuration files
+│   ├── container.php        # DI container setup
+│   ├── middleware.php       # Middleware registration
+│   ├── routes.php           # Route definitions
+│   └── settings.php         # Application settings
+├── public/                  # Web root (document root)
+│   ├── css/                 # Stylesheets
+│   ├── js/                  # JavaScript files
+│   └── index.php            # Application entry point
+├── scripts/                 # Utility scripts
+│   ├── code-qa.sh           # Code quality runner
+│   └── utils.sh             # Shared utilities
+├── src/                     # Application source code
+│   ├── Controllers/         # Request handlers
+│   ├── Middleware/          # HTTP middleware
+│   └── Services/            # Business logic services
+├── templates/               # Twig templates
+│   ├── components/          # Reusable components (header, footer, etc.)
+│   ├── layouts/             # Base layouts
+│   └── pages/               # Page-specific templates
+├── var/                     # Runtime files
+│   └── cache/               # Twig cache (gitignored)
+├── .env.example             # Environment template
+├── phpcs.xml.dist           # PHPCS configuration
+└── phpstan.neon             # PHPStan configuration
 ```
 
 ## Features
 
-- **Slim Framework 4** - Micro framework for PHP
-- **Twig 3** - Template engine with component-based structure
-- **PHP-DI** - Dependency injection container
-- **Session Management** - With flash messages support
-- **Contact Form** - SMTP email via PHPMailer
-- **GDPR Cookie Banner** - Consent management
-- **Environment Config** - Via `.env` files
+| Feature | Description |
+|---------|-------------|
+| **Slim Framework 4** | Fast, minimal PHP micro-framework |
+| **Twig 3** | Secure template engine with inheritance and components |
+| **PHP-DI** | Autowiring dependency injection container |
+| **Session Management** | PHP sessions with flash messages |
+| **Contact Form** | Ready-to-use form with SMTP email (PHPMailer) |
+| **GDPR Cookie Banner** | Cookie consent with localStorage |
+| **Environment Config** | `.env` file support via phpdotenv |
+| **Code Quality** | PHPCS, PHPStan, pre-commit hooks |
 
 ## Configuration
 
-Edit `.env` to configure:
+All configuration is managed via environment variables in `.env`:
 
-- `APP_ENV` - Environment (development/production)
-- `APP_DEBUG` - Enable debug mode
-- `DB_*` - Database connection settings
-- `MAIL_*` - SMTP email settings
-- `CONTACT_EMAIL` - Contact form recipient
+### Application
+```env
+APP_ENV=development      # Environment (development/production)
+APP_DEBUG=true           # Enable debug mode and detailed errors
+APP_URL=https://...      # Application URL
+```
+
+### Database
+```env
+DB_HOST=db               # Database host (use 'db' for DDEV)
+DB_PORT=3306             # Database port
+DB_DATABASE=db           # Database name
+DB_USERNAME=db           # Database username
+DB_PASSWORD=db           # Database password
+```
+
+### Mail (SMTP)
+```env
+MAIL_HOST=localhost      # SMTP host (use 'localhost' for DDEV MailHog)
+MAIL_PORT=1025           # SMTP port (1025 for MailHog)
+MAIL_USERNAME=           # SMTP username (empty for MailHog)
+MAIL_PASSWORD=           # SMTP password (empty for MailHog)
+MAIL_FROM_ADDRESS=...    # From email address
+MAIL_FROM_NAME=...       # From name
+CONTACT_EMAIL=...        # Contact form recipient
+```
+
+## MailHog (Email Testing)
+
+DDEV includes MailHog for capturing outgoing emails during development.
+
+```bash
+ddev launch -m           # Open MailHog interface
+```
+
+Or visit: `https://your-project.ddev.site:8026`
 
 ## Adding New Pages
 
-1. Create a controller method or new controller in `src/Controllers/`
-2. Add a route in `config/routes.php`
-3. Create a template in `templates/pages/`
+1. **Create a controller** in `src/Controllers/`:
+   ```php
+   class MyController
+   {
+       public function __construct(private readonly Twig $twig) {}
+
+       public function index(Request $request, Response $response): Response
+       {
+           return $this->twig->render($response, 'pages/my-page.twig');
+       }
+   }
+   ```
+
+2. **Add a route** in `config/routes.php`:
+   ```php
+   $app->get('/my-page', [MyController::class, 'index'])->setName('my-page');
+   ```
+
+3. **Create a template** in `templates/pages/my-page.twig`:
+   ```twig
+   {% extends 'layouts/base.twig' %}
+
+   {% block title %}My Page{% endblock %}
+
+   {% block content %}
+       <h1>My Page</h1>
+   {% endblock %}
+   ```
+
+## Twig Components
+
+Reusable components are located in `templates/components/`:
+
+| Component | Description |
+|-----------|-------------|
+| `header.twig` | Site header with logo |
+| `navigation.twig` | Main navigation menu |
+| `footer.twig` | Site footer |
+| `cookie-banner.twig` | GDPR cookie consent banner |
+| `flash-messages.twig` | Session flash messages |
+
+Include components in your templates:
+```twig
+{% include 'components/header.twig' %}
+```
 
 ## License
 
