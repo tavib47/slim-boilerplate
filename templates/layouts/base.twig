@@ -6,6 +6,7 @@
     <meta name="description" content="{% block meta_description %}{% endblock %}">
     <title>{% block title %}{% endblock %} | Slim App</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/components/cookie-banner.css">
     {% block head %}{% endblock %}
 </head>
 <body>
@@ -21,6 +22,7 @@
     {% include 'components/cookie-banner.twig' %}
 
     <script src="/js/app.js"></script>
+    <script src="/js/components/cookie-banner.js"></script>
     {% block scripts %}{% endblock %}
 </body>
 </html>
