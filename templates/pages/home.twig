@@ -5,24 +5,36 @@
 
 {% block content %}
 <section class="hero">
-    <h1>Welcome to Slim App</h1>
-    <p>A modern PHP boilerplate built with Slim Framework and Twig.</p>
+    <h1 class="display-4">Welcome to Slim App</h1>
+    <p class="lead">A modern PHP boilerplate built with Slim Framework and Twig.</p>
 </section>
 
 <section class="features">
-    <h2>Features</h2>
-    <div class="feature-grid">
-        <div class="feature-card">
-            <h3>Slim Framework 4</h3>
-            <p>A micro framework that helps you write simple yet powerful web applications.</p>
+    <h2 class="text-center mb-4">Features</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Slim Framework 4</h5>
+                    <p class="card-text text-muted">A micro framework that helps you write simple yet powerful web applications.</p>
+                </div>
+            </div>
         </div>
-        <div class="feature-card">
-            <h3>Twig Templating</h3>
-            <p>Modern template engine with reusable components and layouts.</p>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Twig Templating</h5>
+                    <p class="card-text text-muted">Modern template engine with reusable components and layouts.</p>
+                </div>
+            </div>
         </div>
-        <div class="feature-card">
-            <h3>GDPR Compliant</h3>
-            <p>Built-in cookie consent banner for privacy compliance.</p>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">GDPR Compliant</h5>
+                    <p class="card-text text-muted">Built-in cookie consent banner for privacy compliance.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>

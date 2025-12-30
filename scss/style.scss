@@ -1,5 +1,10 @@
-// Main stylesheet - imports all partials
-@use 'base';
-@use 'layout';
-@use 'components';
-@use 'pages';
+// 1. Custom variables (Bootstrap overrides)
+@import 'variables';
+
+// 2. Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+// 3. Custom styles
+@import 'layout';
+@import 'pages';
+@import 'components/cookie-banner';

@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "sass:build": "sass scss/style.scss public/css/style.css --style=compressed --no-source-map",
-    "sass:dev": "sass scss/style.scss public/css/style.css --style=expanded",
-    "sass:watch": "sass scss/style.scss public/css/style.css --style=expanded --watch"
+    "sass:build": "sass --load-path=node_modules scss/style.scss public/css/style.css --style=compressed --no-source-map",
+    "sass:dev": "sass --load-path=node_modules scss/style.scss public/css/style.css --style=expanded",
+    "sass:watch": "sass --load-path=node_modules scss/style.scss public/css/style.css --style=expanded --watch"
   },
   "devDependencies": {
     "sass": "^1.77.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8"
   }
 }

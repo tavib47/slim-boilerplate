@@ -1,9 +1,9 @@
 <nav class="site-nav">
     <div class="container">
-        <ul class="nav-list">
-            <li><a href="{{ route_localized('home', locale) }}" class="nav-link">{{ trans('nav.home') }}</a></li>
-            <li><a href="{{ route_localized('about', locale) }}" class="nav-link">{{ trans('nav.about') }}</a></li>
-            <li><a href="{{ route_localized('contact', locale) }}" class="nav-link">{{ trans('nav.contact') }}</a></li>
+        <ul class="nav">
+            <li class="nav-item"><a href="{{ route_localized('home', locale) }}" class="nav-link text-light">{{ trans('nav.home') }}</a></li>
+            <li class="nav-item"><a href="{{ route_localized('about', locale) }}" class="nav-link text-light">{{ trans('nav.about') }}</a></li>
+            <li class="nav-item"><a href="{{ route_localized('contact', locale) }}" class="nav-link text-light">{{ trans('nav.contact') }}</a></li>
         </ul>
     </div>
 </nav>

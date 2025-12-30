@@ -1,24 +1,22 @@
-@use '../variables' as *;
-
 .cookie-banner {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: $color-dark;
-    color: $color-white;
-    padding: $spacing-md;
-    z-index: 1000;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    background-color: $dark;
+    color: $white;
+    padding: $spacer;
+    z-index: $zindex-fixed;
+    box-shadow: 0 -2px 10px rgba($black, 0.1);
 }
 
 .cookie-content {
-    max-width: $container-max-width;
+    max-width: map-get($container-max-widths, xxl);
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: $spacing-md;
+    gap: $spacer;
     flex-wrap: wrap;
 
     p {
@@ -27,16 +25,16 @@
     }
 
     a {
-        color: $color-link-light;
+        color: $link-light;
     }
 }
 
 .cookie-actions {
     display: flex;
-    gap: $spacing-xs;
+    gap: $spacer * 0.5;
 }
 
-@media (max-width: $breakpoint-tablet) {
+@include media-breakpoint-down(md) {
     .cookie-content {
         flex-direction: column;
         text-align: center;
