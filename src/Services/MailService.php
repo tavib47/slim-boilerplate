@@ -11,7 +11,8 @@ class MailService
 {
     public function __construct(
         private readonly array $settings
-    ) {}
+    ) {
+    }
 
     public function send(string $to, string $subject, string $body, ?string $replyTo = null): bool
     {

@@ -17,7 +17,8 @@ class ContactController
         private readonly Twig $twig,
         private readonly MailService $mailService,
         private readonly array $settings
-    ) {}
+    ) {
+    }
 
     public function show(Request $request, Response $response): Response
     {
