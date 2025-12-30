@@ -36,5 +36,30 @@ return [
         'path' => dirname(__DIR__) . '/templates',
         'cache' => dirname(__DIR__) . '/var/cache',
     ],
-    'locale' => require __DIR__ . '/locales.php',
+    'locale' => [
+      'default_locale' => $_ENV['APP_LOCALE'] ?? 'en',
+      'supported_locales' => array_filter(
+          array_map('trim', explode(',', $_ENV['APP_LOCALES'] ?? 'en')),
+          static fn (string $locale): bool => $locale !== ''
+      ),
+      'fallback_locales' => ['en'],
+      'translations_path' => dirname(__DIR__) . '/translations',
+      'route_slugs' => [
+        'about' => [
+          'ro' => 'despre-noi',
+          'fr' => 'a-propos',
+          'es' => 'acerca-de',
+        ],
+        'privacy' => [
+          'ro' => 'confidentialitate',
+          'fr' => 'confidentialite',
+          'es' => 'privacidad',
+        ],
+        'contact' => [
+          'ro' => 'contact',
+          'fr' => 'contact',
+          'es' => 'contacto',
+        ],
+      ],
+    ],
 ];
