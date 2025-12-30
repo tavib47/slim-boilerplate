@@ -1,0 +1,5 @@
+// Main stylesheet - imports all partials
+@use 'base';
+@use 'layout';
+@use 'components';
+@use 'pages';

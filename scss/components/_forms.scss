@@ -1,0 +1,32 @@
+@use '../variables' as *;
+
+.contact-form {
+    max-width: 600px;
+    margin-top: $spacing-xl;
+}
+
+.form-group {
+    margin-bottom: $spacing-lg;
+
+    label {
+        display: block;
+        margin-bottom: $spacing-xs;
+        font-weight: 500;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: $spacing-sm;
+        border: 1px solid $color-border-input;
+        border-radius: $border-radius;
+        font-size: 1rem;
+        font-family: inherit;
+
+        &:focus {
+            outline: none;
+            border-color: $color-primary;
+            box-shadow: 0 0 0 2px rgba($color-primary, 0.2);
+        }
+    }
+}

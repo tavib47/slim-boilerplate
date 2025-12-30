@@ -1,0 +1,13 @@
+{
+  "name": "slim-boilerplate",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "sass:build": "sass scss/style.scss public/css/style.css --style=compressed --no-source-map",
+    "sass:dev": "sass scss/style.scss public/css/style.css --style=expanded",
+    "sass:watch": "sass scss/style.scss public/css/style.css --style=expanded --watch"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0"
+  }
+}

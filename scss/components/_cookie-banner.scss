@@ -1,41 +1,42 @@
-/* Cookie Banner Component */
+@use '../variables' as *;
+
 .cookie-banner {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #1a1a2e;
-    color: #fff;
-    padding: 1rem;
+    background-color: $color-dark;
+    color: $color-white;
+    padding: $spacing-md;
     z-index: 1000;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .cookie-content {
-    max-width: 1200px;
+    max-width: $container-max-width;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 1rem;
+    gap: $spacing-md;
     flex-wrap: wrap;
-}
 
-.cookie-content p {
-    margin: 0;
-    flex: 1;
-}
+    p {
+        margin: 0;
+        flex: 1;
+    }
 
-.cookie-content a {
-    color: #90caf9;
+    a {
+        color: $color-link-light;
+    }
 }
 
 .cookie-actions {
     display: flex;
-    gap: 0.5rem;
+    gap: $spacing-xs;
 }
 
-@media (max-width: 768px) {
+@media (max-width: $breakpoint-tablet) {
     .cookie-content {
         flex-direction: column;
         text-align: center;

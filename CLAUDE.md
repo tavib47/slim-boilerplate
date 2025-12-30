@@ -28,6 +28,40 @@ ddev launch             # Open in browser
 ddev mysql              # Database CLI
 ```
 
+## Theme Development (Sass/CSS)
+
+Styles are written in Sass. Source files in `scss/`, output to `public/css/style.css`.
+
+```bash
+ddev composer theme:dev     # Compile (expanded)
+ddev composer theme:build   # Compile (minified)
+ddev composer theme:watch   # Watch mode
+```
+
+### Sass Structure
+
+```
+scss/
+├── style.scss          # Main entry (imports all partials)
+├── _variables.scss     # Colors, spacing, breakpoints, typography
+├── _base.scss          # Reset, base styles
+├── _layout.scss        # Header, nav, footer, container
+├── _pages.scss         # Page-specific (hero, features, page-content)
+└── components/         # One file per component
+    ├── _index.scss     # Imports all components
+    ├── _buttons.scss
+    ├── _forms.scss
+    ├── _flash-messages.scss
+    ├── _feature-cards.scss
+    └── _cookie-banner.scss
+```
+
+### Adding Styles
+
+- **New component**: Create `scss/components/_name.scss`, add `@use 'name';` to `components/_index.scss`
+- **Variables**: Each partial imports variables with `@use '../variables' as *;`
+- **Never edit** `public/css/style.css` directly - it's compiled output
+
 ## Code Quality Commands
 
 ```bash
@@ -84,8 +118,14 @@ translations/
 
 public/
 ├── index.php                   # Entry point
-├── css/style.css               # Styles
+├── css/style.css               # Compiled CSS (do not edit directly)
 └── js/app.js                   # Cookie consent JS
+
+scss/                           # Sass source files
+├── style.scss                  # Main entry point
+├── _variables.scss             # Design tokens
+├── _base.scss, _layout.scss, _pages.scss
+└── components/                 # Component partials
 ```
 
 ## Key Patterns
@@ -182,6 +222,7 @@ ddev launch -m
 - Services: `PascalCase` + `Service` suffix (e.g., `MailService.php`)
 - Middleware: `PascalCase` + `Middleware` suffix
 - Templates: `kebab-case.twig` (e.g., `cookie-banner.twig`)
+- Sass partials: `_kebab-case.scss` (e.g., `_cookie-banner.scss`)
 - Config files: `lowercase.php`
 
 ## Multilingual System (i18n)

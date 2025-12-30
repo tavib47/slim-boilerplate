@@ -68,6 +68,44 @@ ddev sequelace          # Open Sequel Ace (macOS)
 ddev tableplus          # Open TablePlus
 ```
 
+## Theme Development (Sass/CSS)
+
+Stylesheets are written in Sass and compiled to CSS. Source files are in `scss/`, compiled output goes to `public/css/style.css`.
+
+### Commands
+
+```bash
+ddev composer theme:dev     # Compile (expanded, readable)
+ddev composer theme:build   # Compile (minified, production)
+ddev composer theme:watch   # Watch for changes (auto-recompile)
+```
+
+### File Structure
+
+```
+scss/
+├── style.scss              # Main entry point
+├── _variables.scss         # Colors, spacing, typography, breakpoints
+├── _base.scss              # Reset, base styles, links
+├── _layout.scss            # Header, nav, footer, container
+├── _pages.scss             # Page-specific styles (hero, features)
+└── components/             # Individual component styles
+    ├── _index.scss         # Imports all components
+    ├── _buttons.scss
+    ├── _forms.scss
+    ├── _flash-messages.scss
+    ├── _feature-cards.scss
+    └── _cookie-banner.scss
+```
+
+### Adding New Styles
+
+1. **New component**: Create `scss/components/_my-component.scss`, add `@use 'my-component';` to `_index.scss`
+2. **New page styles**: Add to `scss/_pages.scss` or create a new partial
+3. **New variables**: Add to `scss/_variables.scss`
+
+Each partial uses `@use '../variables' as *;` to access variables.
+
 ## Code Quality Tools
 
 This boilerplate includes pre-configured code quality tools that run automatically on commit.
@@ -105,9 +143,16 @@ ddev exec vendor/bin/cghooks remove   # Remove hooks
 │   ├── routes.php           # Route definitions
 │   └── settings.php         # Application settings
 ├── public/                  # Web root (document root)
-│   ├── css/                 # Stylesheets
+│   ├── css/style.css        # Compiled CSS (from scss/)
 │   ├── js/                  # JavaScript files
 │   └── index.php            # Application entry point
+├── scss/                    # Sass source files
+│   ├── style.scss           # Main entry point
+│   ├── _variables.scss      # Design tokens
+│   ├── _base.scss           # Reset and base styles
+│   ├── _layout.scss         # Layout components
+│   ├── _pages.scss          # Page-specific styles
+│   └── components/          # Component partials
 ├── scripts/                 # Utility scripts
 │   ├── code-qa.sh           # Code quality runner
 │   └── utils.sh             # Shared utilities
@@ -133,6 +178,7 @@ ddev exec vendor/bin/cghooks remove   # Remove hooks
 | **Slim Framework 4** | Fast, minimal PHP micro-framework |
 | **Twig 3** | Secure template engine with inheritance and components |
 | **PHP-DI** | Autowiring dependency injection container |
+| **Sass/SCSS** | Modular stylesheets with variables and partials |
 | **Multilingual (i18n)** | URL-based locale detection, translated routes, YAML translations |
 | **Session Management** | PHP sessions with flash messages |
 | **Contact Form** | Ready-to-use form with SMTP email (PHPMailer) |

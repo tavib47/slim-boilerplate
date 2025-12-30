@@ -1,0 +1,30 @@
+@use '../variables' as *;
+
+.btn {
+    display: inline-block;
+    padding: $spacing-sm $spacing-lg;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: background-color $transition-fast;
+}
+
+.btn-primary {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &:hover {
+        background-color: $color-primary-dark;
+    }
+}
+
+.btn-secondary {
+    background-color: $color-secondary;
+    color: $color-white;
+
+    &:hover {
+        background-color: $color-secondary-dark;
+    }
+}

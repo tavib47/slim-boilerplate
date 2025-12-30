@@ -41,7 +41,10 @@
         "phpcs": "phpcs",
         "phpcbf": "phpcbf",
         "phpstan": "phpstan analyse",
-        "code-qa": "scripts/code-qa.sh"
+        "code-qa": "scripts/code-qa.sh",
+        "theme:build": "npm run sass:build",
+        "theme:dev": "npm run sass:dev",
+        "theme:watch": "npm run sass:watch"
     },
     "extra": {
         "hooks": {
