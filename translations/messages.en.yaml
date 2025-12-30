@@ -24,3 +24,9 @@ common:
   name: "Name"
   email: "Email"
   message: "Message"
+
+cookie:
+  text: "We use cookies to improve your experience on our site. By continuing to browse, you agree to our use of cookies."
+  learn_more: "Learn more"
+  accept: "Accept"
+  decline: "Decline"

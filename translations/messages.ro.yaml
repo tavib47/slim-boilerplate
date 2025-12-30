@@ -24,3 +24,9 @@ common:
   name: "Nume"
   email: "Email"
   message: "Mesaj"
+
+cookie:
+  text: "Folosim cookie-uri pentru a îmbunătăți experiența pe site-ul nostru. Continuând navigarea, sunteți de acord cu utilizarea cookie-urilor."
+  learn_more: "Află mai multe"
+  accept: "Accept"
+  decline: "Refuz"
