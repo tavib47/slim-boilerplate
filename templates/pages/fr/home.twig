@@ -5,24 +5,36 @@
 
 {% block content %}
 <section class="hero">
-    <h1>Bienvenue sur Slim App</h1>
-    <p>Un boilerplate PHP moderne construit avec Slim Framework et Twig.</p>
+    <h1 class="display-4">Bienvenue sur Slim App</h1>
+    <p class="lead">Un boilerplate PHP moderne construit avec Slim Framework et Twig.</p>
 </section>
 
 <section class="features">
-    <h2>Fonctionnalités</h2>
-    <div class="feature-grid">
-        <div class="feature-card">
-            <h3>Slim Framework 4</h3>
-            <p>Un micro-framework qui vous aide à créer des applications web simples mais puissantes.</p>
+    <h2 class="text-center mb-4">Fonctionnalités</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Slim Framework 4</h5>
+                    <p class="card-text text-muted">Un micro-framework qui vous aide à créer des applications web simples mais puissantes.</p>
+                </div>
+            </div>
         </div>
-        <div class="feature-card">
-            <h3>Templates Twig</h3>
-            <p>Moteur de templates moderne avec composants réutilisables et layouts.</p>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Templates Twig</h5>
+                    <p class="card-text text-muted">Moteur de templates moderne avec composants réutilisables et layouts.</p>
+                </div>
+            </div>
         </div>
-        <div class="feature-card">
-            <h3>Conforme RGPD</h3>
-            <p>Bannière de consentement aux cookies intégrée pour la conformité à la vie privée.</p>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Conforme RGPD</h5>
+                    <p class="card-text text-muted">Bannière de consentement aux cookies intégrée pour la conformité à la vie privée.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
