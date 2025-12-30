@@ -1,58 +1,16 @@
 {% extends 'layouts/base.twig' %}
 
 {% block title %}Privacy Policy{% endblock %}
-{% block meta_description %}Our privacy policy - learn how we handle your data{% endblock %}
+{% block meta_description %}Our privacy policy{% endblock %}
 
 {% block content %}
 <section class="page-content legal-content">
     <h1>Privacy Policy</h1>
+    <p>Your privacy is important to us.</p>
     <p><em>Last updated: {{ "now"|date("F Y") }}</em></p>
 
-    <h2>1. Information We Collect</h2>
     <p>
-        We collect information you provide directly to us, such as when you fill out our contact form.
-        This may include your name, email address, and any message you send us.
-    </p>
-
-    <h2>2. Cookies</h2>
-    <p>
-        We use cookies to improve your browsing experience and analyze site traffic.
-        You can choose to accept or decline cookies through the cookie consent banner.
-    </p>
-    <p>Types of cookies we may use:</p>
-    <ul>
-        <li><strong>Essential cookies:</strong> Required for the website to function properly</li>
-        <li><strong>Analytics cookies:</strong> Help us understand how visitors interact with our website</li>
-    </ul>
-
-    <h2>3. How We Use Your Information</h2>
-    <p>We use the information we collect to:</p>
-    <ul>
-        <li>Respond to your inquiries and requests</li>
-        <li>Improve our website and services</li>
-        <li>Send you information you have requested</li>
-    </ul>
-
-    <h2>4. Data Retention</h2>
-    <p>
-        We retain your personal information only for as long as necessary to fulfill the purposes
-        for which it was collected, or as required by law.
-    </p>
-
-    <h2>5. Your Rights</h2>
-    <p>Under GDPR, you have the right to:</p>
-    <ul>
-        <li>Access your personal data</li>
-        <li>Rectify inaccurate personal data</li>
-        <li>Request deletion of your personal data</li>
-        <li>Object to processing of your personal data</li>
-        <li>Data portability</li>
-    </ul>
-
-    <h2>6. Contact Us</h2>
-    <p>
-        If you have any questions about this Privacy Policy, please
-        <a href="/contact">contact us</a>.
+        <a href="{{ route_localized('contact', locale) }}">{{ trans('nav.contact') }}</a>
     </p>
 </section>
 {% endblock %}

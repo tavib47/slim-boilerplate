@@ -4,28 +4,14 @@ site:
   title: "Slim App"
 
 nav:
-  home: "Acasa"
+  home: "Acasă"
   about: "Despre noi"
   contact: "Contact"
-  privacy: "Confidentialitate"
-
-pages:
-  home:
-    title: "Bine ati venit"
-    meta_description: "Bine ati venit pe site-ul nostru"
-  about:
-    title: "Despre noi"
-    meta_description: "Aflati mai multe despre compania noastra"
-  contact:
-    title: "Contact"
-    meta_description: "Luati legatura cu noi"
-  privacy:
-    title: "Politica de confidentialitate"
-    meta_description: "Politica noastra de confidentialitate"
+  privacy: "Confidențialitate"
 
 flash:
-  contact_success: "Multumim pentru mesaj. Va vom contacta in curand."
-  contact_error: "Mesajul nu a putut fi trimis. Va rugam incercati din nou."
+  contact_success: "Mulțumim pentru mesaj. Vă vom contacta în curând."
+  contact_error: "Mesajul nu a putut fi trimis. Vă rugăm încercați din nou."
 
 common:
   submit: "Trimite"

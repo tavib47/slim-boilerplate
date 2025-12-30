@@ -1,0 +1,16 @@
+{% extends 'layouts/base.twig' %}
+
+{% block title %}Politica de confidențialitate{% endblock %}
+{% block meta_description %}Politica noastră de confidențialitate{% endblock %}
+
+{% block content %}
+<section class="page-content legal-content">
+    <h1>Politica de confidențialitate</h1>
+    <p>Confidențialitatea dumneavoastră este importantă pentru noi.</p>
+    <p><em>Ultima actualizare: {{ "now"|date("F Y") }}</em></p>
+
+    <p>
+        <a href="{{ route_localized('contact', locale) }}">{{ trans('nav.contact') }}</a>
+    </p>
+</section>
+{% endblock %}

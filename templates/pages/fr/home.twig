@@ -1,0 +1,29 @@
+{% extends 'layouts/base.twig' %}
+
+{% block title %}Accueil{% endblock %}
+{% block meta_description %}Bienvenue sur Slim App - Une application PHP moderne construite avec Slim Framework{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Bienvenue sur Slim App</h1>
+    <p>Un boilerplate PHP moderne construit avec Slim Framework et Twig.</p>
+</section>
+
+<section class="features">
+    <h2>Fonctionnalités</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h3>Slim Framework 4</h3>
+            <p>Un micro-framework qui vous aide à créer des applications web simples mais puissantes.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Templates Twig</h3>
+            <p>Moteur de templates moderne avec composants réutilisables et layouts.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Conforme RGPD</h3>
+            <p>Bannière de consentement aux cookies intégrée pour la conformité à la vie privée.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

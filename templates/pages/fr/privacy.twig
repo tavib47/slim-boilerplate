@@ -1,0 +1,16 @@
+{% extends 'layouts/base.twig' %}
+
+{% block title %}Politique de confidentialité{% endblock %}
+{% block meta_description %}Notre politique de confidentialité{% endblock %}
+
+{% block content %}
+<section class="page-content legal-content">
+    <h1>Politique de confidentialité</h1>
+    <p>Votre vie privée est importante pour nous.</p>
+    <p><em>Dernière mise à jour : {{ "now"|date("F Y") }}</em></p>
+
+    <p>
+        <a href="{{ route_localized('contact', locale) }}">{{ trans('nav.contact') }}</a>
+    </p>
+</section>
+{% endblock %}

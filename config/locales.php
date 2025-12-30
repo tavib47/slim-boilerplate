@@ -23,12 +23,18 @@ return [
     'route_slugs' => [
         'about' => [
             'ro' => 'despre-noi',
+            'fr' => 'a-propos',
+            'es' => 'acerca-de',
         ],
         'privacy' => [
             'ro' => 'confidentialitate',
+            'fr' => 'confidentialite',
+            'es' => 'privacidad',
         ],
         'contact' => [
             'ro' => 'contact',
+            'fr' => 'contact',
+            'es' => 'contacto',
         ],
     ],
 ];

@@ -1,0 +1,21 @@
+# Spanish translations
+
+site:
+  title: "Slim App"
+
+nav:
+  home: "Inicio"
+  about: "Acerca de"
+  contact: "Contacto"
+  privacy: "Privacidad"
+
+flash:
+  contact_success: "Gracias por tu mensaje. Te responderemos pronto."
+  contact_error: "Error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde."
+
+common:
+  submit: "Enviar"
+  send: "Enviar"
+  name: "Nombre"
+  email: "Correo electrónico"
+  message: "Mensaje"

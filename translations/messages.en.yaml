@@ -9,20 +9,6 @@ nav:
   contact: "Contact"
   privacy: "Privacy"
 
-pages:
-  home:
-    title: "Welcome"
-    meta_description: "Welcome to our website"
-  about:
-    title: "About Us"
-    meta_description: "Learn more about our company and what we do"
-  contact:
-    title: "Contact"
-    meta_description: "Get in touch with us"
-  privacy:
-    title: "Privacy Policy"
-    meta_description: "Our privacy policy"
-
 flash:
   contact_success: "Thank you for your message. We will get back to you soon."
   contact_error: "Failed to send message. Please try again later."

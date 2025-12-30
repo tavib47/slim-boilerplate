@@ -1,0 +1,21 @@
+# French translations
+
+site:
+  title: "Slim App"
+
+nav:
+  home: "Accueil"
+  about: "À propos"
+  contact: "Contact"
+  privacy: "Confidentialité"
+
+flash:
+  contact_success: "Merci pour votre message. Nous vous répondrons bientôt."
+  contact_error: "Échec de l'envoi du message. Veuillez réessayer plus tard."
+
+common:
+  submit: "Envoyer"
+  send: "Envoyer"
+  name: "Nom"
+  email: "Email"
+  message: "Message"
