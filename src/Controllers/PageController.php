@@ -16,16 +16,13 @@ class PageController
     ) {
     }
 
-    public function about(Request $request, Response $response): Response
+    public function show(Request $request, Response $response): Response
     {
-        return $this->twig->render($response, 'pages/about.twig', [
-            'flash' => SessionMiddleware::getFlash(),
-        ]);
-    }
+        // Get template name from URL path (e.g., /about -> about)
+        $path = trim($request->getUri()->getPath(), '/');
+        $template = $path ?: 'home';
 
-    public function privacy(Request $request, Response $response): Response
-    {
-        return $this->twig->render($response, 'pages/privacy.twig', [
+        return $this->twig->render($response, "pages/{$template}.twig", [
             'flash' => SessionMiddleware::getFlash(),
         ]);
     }
