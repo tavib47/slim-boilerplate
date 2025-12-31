@@ -37,11 +37,8 @@ return [
         'cache' => dirname(__DIR__) . '/var/cache',
     ],
     'locale' => [
-      'default_locale' => $_ENV['APP_LOCALE'] ?? 'en',
-      'supported_locales' => array_filter(
-          array_map('trim', explode(',', $_ENV['APP_LOCALES'] ?? 'en')),
-          static fn (string $locale): bool => $locale !== ''
-      ),
+      'default_locale' => 'en',
+      'supported_locales' => ['en', 'ro', 'fr', 'es'],
       'fallback_locales' => ['en'],
       'translations_path' => dirname(__DIR__) . '/translations',
       'route_slugs' => [
