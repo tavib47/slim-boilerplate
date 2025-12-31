@@ -37,7 +37,7 @@ class TranslationExtension extends AbstractExtension implements GlobalsInterface
     {
         return [
             new TwigFunction('trans', $this->trans(...)),
-            new TwigFunction('route_localized', $this->routeLocalized(...)),
+            new TwigFunction('route', $this->routeLocalized(...)),
             new TwigFunction('language_switcher_urls', $this->languageSwitcherUrls(...)),
         ];
     }

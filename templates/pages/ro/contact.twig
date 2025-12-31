@@ -8,7 +8,7 @@
     <h1>Contactați-ne</h1>
     <p class="lead">Aveți întrebări? Ne-ar plăcea să auzim de la dumneavoastră.</p>
 
-    <form action="{{ route_localized('contact') }}" method="post" class="mt-4" style="max-width: 600px;">
+    <form action="{{ route('contact') }}" method="post" class="mt-4" style="max-width: 600px;">
         <div class="mb-3">
             <label for="name" class="form-label">{{ trans('Name') }}</label>
             <input type="text" class="form-control" id="name" name="name" required>
