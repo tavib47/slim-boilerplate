@@ -107,7 +107,7 @@ src/
     └── TranslationExtension.php    # trans(), route_localized() functions
 
 templates/
-├── layouts/base.twig           # Main layout
+├── layout/base.twig           # Main layout
 ├── components/                 # Reusable (header, footer, nav, language-switcher, etc.)
 └── pages/                      # Page templates (home, about, contact, privacy)
     └── {locale}/               # Optional locale-specific overrides
@@ -180,7 +180,7 @@ $flash = SessionMiddleware::getFlash();
 Templates extend the base layout:
 
 ```twig
-{% extends 'layouts/base.twig' %}
+{% extends 'layout/base.twig' %}
 
 {% block title %}Page Title{% endblock %}
 {% block meta_description %}SEO description{% endblock %}

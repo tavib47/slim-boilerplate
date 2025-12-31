@@ -74,7 +74,7 @@ return static function (Container $container, array $settings): void {
 
     $container->set(MailService::class, static function (ContainerInterface $c): MailService {
         $settings = $c->get('settings')['mail'];
-        return new MailService($settings);
+        return new MailService($settings, $c->get(Twig::class));
     });
 
     $container->set(HomeController::class, static function (ContainerInterface $c): HomeController {

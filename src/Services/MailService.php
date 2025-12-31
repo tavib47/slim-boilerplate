@@ -6,11 +6,13 @@ namespace App\Services;
 
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
+use Slim\Views\Twig;
 
 class MailService
 {
     public function __construct(
-        private readonly array $settings
+        private readonly array $settings,
+        private readonly Twig $twig
     ) {
     }
 
@@ -43,7 +45,9 @@ class MailService
 
             $mail->isHTML(true);
             $mail->Subject = $subject;
-            $mail->Body = $body;
+
+            $htmlBody = $this->twig->fetch('emails/base.twig', ['body' => $body]);
+            $mail->Body = $htmlBody;
             $mail->AltBody = strip_tags($body);
 
             $mail->send();

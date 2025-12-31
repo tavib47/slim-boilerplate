@@ -162,7 +162,7 @@ ddev exec vendor/bin/cghooks remove   # Remove hooks
 │   └── Services/            # Business logic services
 ├── templates/               # Twig templates
 │   ├── components/          # Reusable components (header, footer, etc.)
-│   ├── layouts/             # Base layouts
+│   ├── layout/             # Base layouts
 │   └── pages/               # Page-specific templates
 ├── var/                     # Runtime files
 │   └── cache/               # Twig cache (gitignored)
@@ -326,7 +326,7 @@ Or visit: `https://your-project.ddev.site:8026`
 
 3. **Create a template** in `templates/pages/my-page.twig`:
    ```twig
-   {% extends 'layouts/base.twig' %}
+   {% extends 'layout/base.twig' %}
 
    {% block title %}My Page{% endblock %}
 

@@ -7,7 +7,6 @@
 
 # Cache
 /var/cache/*
-!/var/cache/.gitkeep
 
 # IDE
 .idea/
