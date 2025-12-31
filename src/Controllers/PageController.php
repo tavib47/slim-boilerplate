@@ -11,14 +11,31 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Routing\RouteContext;
 use Slim\Views\Twig;
 
+/**
+ * Controller for static pages.
+ */
 class PageController
 {
+    /**
+     * Creates a new PageController instance.
+     *
+     * @param Twig                   $twig             Twig view renderer
+     * @param LocaleTemplateResolver $templateResolver Template resolver for locale-specific templates
+     */
     public function __construct(
         private readonly Twig $twig,
         private readonly LocaleTemplateResolver $templateResolver
     ) {
     }
 
+    /**
+     * Renders a static page based on the current route name.
+     *
+     * @param Request  $request  HTTP request
+     * @param Response $response HTTP response
+     *
+     * @return Response Rendered page response
+     */
     public function show(Request $request, Response $response): Response
     {
         $locale = $request->getAttribute('locale', 'en');

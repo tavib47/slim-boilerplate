@@ -7,21 +7,28 @@ namespace App\Services;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
 use Symfony\Component\Translation\Translator;
 
+/**
+ * Service for managing translations using Symfony Translation component.
+ */
 class TranslationService
 {
+    /** @var Translator Symfony translator instance */
     private Translator $translator;
+
+    /** @var string Currently active locale */
     private string $currentLocale;
+
+    /** @var string Default application locale */
     private string $defaultLocale;
     /** @var list<string> */
     private array $supportedLocales;
 
     /**
-     * @param array{
-     *     default_locale: string,
-     *     supported_locales: list<string>,
-     *     fallback_locales: list<string>,
-     *     translations_path: string
-     * } $config
+     * Creates a new TranslationService instance.
+     *
+     * @param array<string, mixed> $config Translation configuration with keys:
+     *                                      default_locale, supported_locales,
+     *                                      fallback_locales, translations_path
      */
     public function __construct(array $config)
     {
@@ -41,6 +48,13 @@ class TranslationService
         }
     }
 
+    /**
+     * Sets the current locale for translations.
+     *
+     * @param string $locale Locale code to set
+     *
+     * @return void
+     */
     public function setLocale(string $locale): void
     {
         if (in_array($locale, $this->supportedLocales, true)) {
@@ -49,18 +63,30 @@ class TranslationService
         }
     }
 
+    /**
+     * Gets the currently active locale.
+     *
+     * @return string Current locale code
+     */
     public function getLocale(): string
     {
         return $this->currentLocale;
     }
 
+    /**
+     * Gets the default application locale.
+     *
+     * @return string Default locale code
+     */
     public function getDefaultLocale(): string
     {
         return $this->defaultLocale;
     }
 
     /**
-     * @return list<string>
+     * Gets the list of supported locales.
+     *
+     * @return list<string> Array of supported locale codes
      */
     public function getSupportedLocales(): array
     {
@@ -68,7 +94,13 @@ class TranslationService
     }
 
     /**
-     * @param array<string, string> $parameters
+     * Translates a message string.
+     *
+     * @param string                $id         Message identifier
+     * @param array<string, string> $parameters Placeholder replacements
+     * @param string|null           $domain     Translation domain
+     *
+     * @return string Translated message
      */
     public function trans(string $id, array $parameters = [], ?string $domain = null): string
     {

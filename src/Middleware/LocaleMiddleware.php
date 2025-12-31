@@ -11,14 +11,31 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+/**
+ * Middleware for detecting and setting the current locale from URL.
+ */
 class LocaleMiddleware implements MiddlewareInterface
 {
+    /**
+     * Creates a new LocaleMiddleware instance.
+     *
+     * @param TranslationService  $translationService  Translation service
+     * @param LocaleRouteService  $localeRouteService  Locale route service
+     */
     public function __construct(
         private readonly TranslationService $translationService,
         private readonly LocaleRouteService $localeRouteService
     ) {
     }
 
+    /**
+     * Processes the request and detects locale from URL prefix.
+     *
+     * @param ServerRequestInterface  $request HTTP request
+     * @param RequestHandlerInterface $handler Request handler
+     *
+     * @return ResponseInterface HTTP response
+     */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $path = $request->getUri()->getPath();

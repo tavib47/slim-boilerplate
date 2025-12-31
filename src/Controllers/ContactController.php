@@ -11,8 +11,18 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Routing\RouteContext;
 
+/**
+ * Controller for contact form handling.
+ */
 class ContactController
 {
+    /**
+     * Creates a new ContactController instance.
+     *
+     * @param MailService        $mailService Mail service for sending emails
+     * @param TranslationService $translator  Translation service
+     * @param array<string, mixed> $settings  Application settings
+     */
     public function __construct(
         private readonly MailService $mailService,
         private readonly TranslationService $translator,
@@ -20,6 +30,14 @@ class ContactController
     ) {
     }
 
+    /**
+     * Handles contact form submission.
+     *
+     * @param Request  $request  HTTP request
+     * @param Response $response HTTP response
+     *
+     * @return Response Redirect response after form processing
+     */
     public function submit(Request $request, Response $response): Response
     {
         $data = $request->getParsedBody();
@@ -76,6 +94,15 @@ class ContactController
         return $this->redirectToRoute($request, $response, 'contact');
     }
 
+    /**
+     * Formats the contact form data as an HTML email body.
+     *
+     * @param string $name    Sender name
+     * @param string $email   Sender email
+     * @param string $message Message content
+     *
+     * @return string Formatted HTML email body
+     */
     private function formatEmailBody(string $name, string $email, string $message): string
     {
         return sprintf(
@@ -90,6 +117,15 @@ class ContactController
         );
     }
 
+    /**
+     * Redirects to a named route with locale awareness.
+     *
+     * @param Request  $request   HTTP request
+     * @param Response $response  HTTP response
+     * @param string   $routeName Route name to redirect to
+     *
+     * @return Response Redirect response
+     */
     private function redirectToRoute(Request $request, Response $response, string $routeName): Response
     {
         $locale = $request->getAttribute('locale', 'en');

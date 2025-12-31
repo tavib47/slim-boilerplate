@@ -4,23 +4,27 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+/**
+ * Service for managing locale-aware route slugs and paths.
+ */
 class LocaleRouteService
 {
-    /** @var array<string, array<string, string>> */
+    /** @var array<string, array<string, string>> Route name to locale slug mappings */
     private array $routeSlugs;
+
+    /** @var string Default application locale */
     private string $defaultLocale;
-    /** @var list<string> */
+    /** @var list<string> Supported locale codes */
     private array $supportedLocales;
 
     /** @var array<string, array<string, string>> Reverse mapping: [locale][slug] => route_name */
     private array $slugToRoute = [];
 
     /**
-     * @param array{
-     *     default_locale: string,
-     *     supported_locales: list<string>,
-     *     route_slugs: array<string, array<string, string>>
-     * } $config
+     * Creates a new LocaleRouteService instance.
+     *
+     * @param array<string, mixed> $config Locale configuration with keys:
+     *                                      default_locale, supported_locales, route_slugs
      */
     public function __construct(array $config)
     {
@@ -31,6 +35,11 @@ class LocaleRouteService
         $this->buildSlugToRouteMap();
     }
 
+    /**
+     * Builds reverse mapping from slugs to route names per locale.
+     *
+     * @return void
+     */
     private function buildSlugToRouteMap(): void
     {
         foreach ($this->routeSlugs as $routeName => $translations) {
@@ -41,7 +50,12 @@ class LocaleRouteService
     }
 
     /**
-     * Get the translated slug for a route in a specific locale.
+     * Gets the translated slug for a route in a specific locale.
+     *
+     * @param string $routeName Route name
+     * @param string $locale    Target locale
+     *
+     * @return string Translated slug or original route name
      */
     public function getSlugForRoute(string $routeName, string $locale): string
     {
@@ -53,7 +67,12 @@ class LocaleRouteService
     }
 
     /**
-     * Get route name from a translated slug.
+     * Gets route name from a translated slug.
+     *
+     * @param string $slug   URL slug
+     * @param string $locale Current locale
+     *
+     * @return string|null Route name or null if not found
      */
     public function getRouteForSlug(string $slug, string $locale): ?string
     {
@@ -65,7 +84,12 @@ class LocaleRouteService
     }
 
     /**
-     * Generate a localized path for a route.
+     * Generates a localized path for a route.
+     *
+     * @param string $routeName    Route name
+     * @param string $targetLocale Target locale
+     *
+     * @return string Full localized path
      */
     public function getLocalizedPath(string $routeName, string $targetLocale): string
     {
@@ -86,9 +110,11 @@ class LocaleRouteService
     }
 
     /**
-     * Get all localized versions of a route (for language switcher).
+     * Gets all localized versions of a route for language switcher.
      *
-     * @return array<string, string>
+     * @param string $routeName Route name
+     *
+     * @return array<string, string> Locale to path mapping
      */
     public function getAllLocalizedPaths(string $routeName): array
     {
@@ -99,13 +125,20 @@ class LocaleRouteService
         return $paths;
     }
 
+    /**
+     * Gets the default application locale.
+     *
+     * @return string Default locale code
+     */
     public function getDefaultLocale(): string
     {
         return $this->defaultLocale;
     }
 
     /**
-     * @return list<string>
+     * Gets the list of supported locales.
+     *
+     * @return list<string> Array of supported locale codes
      */
     public function getSupportedLocales(): array
     {
