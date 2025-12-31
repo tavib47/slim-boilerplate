@@ -1,21 +1,24 @@
 # Spanish translations
 
-site:
-  title: "Slim App"
+"Home": "Inicio"
+"About": "Acerca de"
+"Contact": "Contacto"
+"Privacy policy": "Privacidad"
 
-nav:
-  home: "Inicio"
-  about: "Acerca de"
-  contact: "Contacto"
-  privacy: "Privacidad"
+"Thank you for your message. We will get back to you soon.": "Gracias por tu mensaje. Te responderemos pronto."
+"Failed to send message. Please try again later.": "Error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde."
 
-flash:
-  contact_success: "Gracias por tu mensaje. Te responderemos pronto."
-  contact_error: "Error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde."
+"Name is required.": "El nombre es obligatorio."
+"A valid email address is required.": "Se requiere una dirección de correo electrónico válida."
+"Message is required.": "El mensaje es obligatorio."
 
-common:
-  submit: "Enviar"
-  send: "Enviar"
-  name: "Nombre"
-  email: "Correo electrónico"
-  message: "Mensaje"
+"Submit": "Enviar"
+"Send": "Enviar"
+"Name": "Nombre"
+"Email": "Correo electrónico"
+"Message": "Mensaje"
+
+"We use cookies to improve your experience on our site. By continuing to browse, you agree to our use of cookies.": "Utilizamos cookies para mejorar tu experiencia en nuestro sitio. Al continuar navegando, aceptas el uso de cookies."
+"Learn more": "Más información"
+"Accept": "Aceptar"
+"Decline": "Rechazar"

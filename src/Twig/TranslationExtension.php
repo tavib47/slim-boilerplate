@@ -51,10 +51,11 @@ class TranslationExtension extends AbstractExtension implements GlobalsInterface
     }
 
     /**
-     * Generate URL for a route in a specific locale.
+     * Generate URL for a route in a specific locale (defaults to current locale).
      */
-    public function routeLocalized(string $routeName, string $locale): string
+    public function routeLocalized(string $routeName, ?string $locale = null): string
     {
+        $locale ??= $this->translationService->getLocale();
         return $this->localeRouteService->getLocalizedPath($routeName, $locale);
     }
 

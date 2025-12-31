@@ -31,15 +31,15 @@ class ContactController
         $errors = [];
 
         if (empty($name)) {
-            $errors[] = $this->translator->trans('validation.name_required');
+            $errors[] = $this->translator->trans('Name is required.');
         }
 
         if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors[] = $this->translator->trans('validation.email_required');
+            $errors[] = $this->translator->trans('A valid email address is required.');
         }
 
         if (empty($message)) {
-            $errors[] = $this->translator->trans('validation.message_required');
+            $errors[] = $this->translator->trans('Message is required.');
         }
 
         if (!empty($errors)) {
@@ -61,14 +61,16 @@ class ContactController
         $sent = $this->mailService->send($recipientEmail, $subject, $body, $email);
 
         if ($sent) {
-            SessionMiddleware::flash('success', $this->translator->trans('flash.contact_success'));
+            $successMessage = $this->translator->trans('Thank you for your message. We will get back to you soon.');
+            SessionMiddleware::flash('success', $successMessage);
         } else {
             SessionMiddleware::setFormData([
               'name' => $name,
               'email' => $email,
               'message' => $message,
             ]);
-            SessionMiddleware::flash('error', $this->translator->trans('flash.contact_error'));
+            $errorMessage = $this->translator->trans('Failed to send message. Please try again later.');
+            SessionMiddleware::flash('error', $errorMessage);
         }
 
         return $this->redirectToRoute($request, $response, 'contact');

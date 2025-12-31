@@ -8,23 +8,23 @@
     <h1>Contact Us</h1>
     <p class="lead">Have questions? We'd love to hear from you.</p>
 
-    <form action="{{ route_localized('contact', locale) }}" method="post" class="mt-4" style="max-width: 600px;">
+    <form action="{{ route_localized('contact') }}" method="post" class="mt-4" style="max-width: 600px;">
         <div class="mb-3">
-            <label for="name" class="form-label">{{ trans('common.name') }}</label>
+            <label for="name" class="form-label">{{ trans('Name') }}</label>
             <input type="text" class="form-control" id="name" name="name" value="{{ form_data.name|default('') }}" required>
         </div>
 
         <div class="mb-3">
-            <label for="email" class="form-label">{{ trans('common.email') }}</label>
+            <label for="email" class="form-label">{{ trans('Email') }}</label>
             <input type="email" class="form-control" id="email" name="email" value="{{ form_data.email|default('') }}" required>
         </div>
 
         <div class="mb-3">
-            <label for="message" class="form-label">{{ trans('common.message') }}</label>
+            <label for="message" class="form-label">{{ trans('Message') }}</label>
             <textarea class="form-control" id="message" name="message" rows="5" required>{{ form_data.message|default('') }}</textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">{{ trans('common.send') }}</button>
+        <button type="submit" class="btn btn-primary">{{ trans('Send') }}</button>
     </form>
 </section>
 {% endblock %}

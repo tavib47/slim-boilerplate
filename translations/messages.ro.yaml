@@ -1,32 +1,24 @@
 # Romanian translations
 
-site:
-  title: "Slim App"
+"Home": "Acasă"
+"About": "Despre noi"
+"Contact": "Contact"
+"Privacy policy": "Confidențialitate"
 
-nav:
-  home: "Acasă"
-  about: "Despre noi"
-  contact: "Contact"
-  privacy: "Confidențialitate"
+"Thank you for your message. We will get back to you soon.": "Mulțumim pentru mesaj. Vă vom contacta în curând."
+"Failed to send message. Please try again later.": "Mesajul nu a putut fi trimis. Vă rugăm încercați din nou."
 
-flash:
-  contact_success: "Mulțumim pentru mesaj. Vă vom contacta în curând."
-  contact_error: "Mesajul nu a putut fi trimis. Vă rugăm încercați din nou."
+"Name is required.": "Numele este obligatoriu."
+"A valid email address is required.": "O adresă de email validă este obligatorie."
+"Message is required.": "Mesajul este obligatoriu."
 
-validation:
-  name_required: "Numele este obligatoriu."
-  email_required: "O adresă de email validă este obligatorie."
-  message_required: "Mesajul este obligatoriu."
+"Submit": "Trimite"
+"Send": "Trimite"
+"Name": "Nume"
+"Email": "Email"
+"Message": "Mesaj"
 
-common:
-  submit: "Trimite"
-  send: "Trimite"
-  name: "Nume"
-  email: "Email"
-  message: "Mesaj"
-
-cookie:
-  text: "Folosim cookie-uri pentru a îmbunătăți experiența pe site-ul nostru. Continuând navigarea, sunteți de acord cu utilizarea cookie-urilor."
-  learn_more: "Află mai multe"
-  accept: "Accept"
-  decline: "Refuz"
+"We use cookies to improve your experience on our site. By continuing to browse, you agree to our use of cookies.": "Folosim cookie-uri pentru a îmbunătăți experiența pe site-ul nostru. Continuând navigarea, sunteți de acord cu utilizarea cookie-urilor."
+"Learn more": "Află mai multe"
+"Accept": "Accept"
+"Decline": "Refuz"

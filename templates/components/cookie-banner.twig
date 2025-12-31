@@ -1,12 +1,12 @@
 <div id="cookie-banner" class="cookie-banner" style="display: none;">
     <div class="cookie-content">
         <p>
-            {{ trans('cookie.text') }}
-            <a href="{{ route_localized('privacy', locale) }}">{{ trans('cookie.learn_more') }}</a>
+            {{ trans('We use cookies to improve your experience on our site. By continuing to browse, you agree to our use of cookies.') }}
+            <a href="{{ route_localized('privacy') }}">{{ trans('Learn more') }}</a>
         </p>
         <div class="cookie-actions">
-            <button type="button" id="cookie-accept" class="btn btn-primary">{{ trans('cookie.accept') }}</button>
-            <button type="button" id="cookie-decline" class="btn btn-secondary">{{ trans('cookie.decline') }}</button>
+            <button type="button" id="cookie-accept" class="btn btn-primary">{{ trans('Accept') }}</button>
+            <button type="button" id="cookie-decline" class="btn btn-secondary">{{ trans('Decline') }}</button>
         </div>
     </div>
 </div>

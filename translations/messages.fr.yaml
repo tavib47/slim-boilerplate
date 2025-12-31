@@ -1,21 +1,24 @@
 # French translations
 
-site:
-  title: "Slim App"
+"Home": "Accueil"
+"About": "À propos"
+"Contact": "Contact"
+"Privacy policy": "Confidentialité"
 
-nav:
-  home: "Accueil"
-  about: "À propos"
-  contact: "Contact"
-  privacy: "Confidentialité"
+"Thank you for your message. We will get back to you soon.": "Merci pour votre message. Nous vous répondrons bientôt."
+"Failed to send message. Please try again later.": "Échec de l'envoi du message. Veuillez réessayer plus tard."
 
-flash:
-  contact_success: "Merci pour votre message. Nous vous répondrons bientôt."
-  contact_error: "Échec de l'envoi du message. Veuillez réessayer plus tard."
+"Name is required.": "Le nom est obligatoire."
+"A valid email address is required.": "Une adresse email valide est obligatoire."
+"Message is required.": "Le message est obligatoire."
 
-common:
-  submit: "Envoyer"
-  send: "Envoyer"
-  name: "Nom"
-  email: "Email"
-  message: "Message"
+"Submit": "Envoyer"
+"Send": "Envoyer"
+"Name": "Nom"
+"Email": "Email"
+"Message": "Message"
+
+"We use cookies to improve your experience on our site. By continuing to browse, you agree to our use of cookies.": "Nous utilisons des cookies pour améliorer votre expérience sur notre site. En continuant à naviguer, vous acceptez notre utilisation des cookies."
+"Learn more": "En savoir plus"
+"Accept": "Accepter"
+"Decline": "Refuser"
