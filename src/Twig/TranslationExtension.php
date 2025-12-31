@@ -23,7 +23,7 @@ class TranslationExtension extends AbstractExtension implements GlobalsInterface
      */
     public function __construct(
         private readonly TranslationService $translationService,
-        private readonly LocaleRouteService $localeRouteService
+        private readonly LocaleRouteService $localeRouteService,
     ) {
     }
 

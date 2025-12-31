@@ -14,6 +14,7 @@ class LocaleRouteService
 
     /** @var string Default application locale */
     private string $defaultLocale;
+
     /** @var list<string> Supported locale codes */
     private array $supportedLocales;
 

@@ -26,7 +26,7 @@ class ContactController
     public function __construct(
         private readonly MailService $mailService,
         private readonly TranslationService $translator,
-        private readonly array $settings
+        private readonly array $settings,
     ) {
     }
 
@@ -113,7 +113,7 @@ class ContactController
             <p>%s</p>',
             htmlspecialchars($name),
             htmlspecialchars($email),
-            nl2br(htmlspecialchars($message))
+            nl2br(htmlspecialchars($message)),
         );
     }
 

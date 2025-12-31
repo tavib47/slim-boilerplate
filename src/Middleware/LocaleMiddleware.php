@@ -24,7 +24,7 @@ class LocaleMiddleware implements MiddlewareInterface
      */
     public function __construct(
         private readonly TranslationService $translationService,
-        private readonly LocaleRouteService $localeRouteService
+        private readonly LocaleRouteService $localeRouteService,
     ) {
     }
 

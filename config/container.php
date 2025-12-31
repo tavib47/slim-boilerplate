@@ -18,24 +18,30 @@ use Slim\Views\Twig;
 return static function (Container $container, array $settings): void {
     $container->set('settings', $settings);
 
-    $container->set(TranslationService::class, static function (ContainerInterface $c): TranslationService {
-        return new TranslationService($c->get('settings')['locale']);
-    });
+    $container->set(
+        TranslationService::class,
+        static fn (ContainerInterface $c): TranslationService => new TranslationService($c->get('settings')['locale']),
+    );
 
-    $container->set(LocaleRouteService::class, static function (ContainerInterface $c): LocaleRouteService {
-        return new LocaleRouteService($c->get('settings')['locale']);
-    });
+    $container->set(
+        LocaleRouteService::class,
+        static fn (ContainerInterface $c): LocaleRouteService => new LocaleRouteService($c->get('settings')['locale']),
+    );
 
-    $container->set(LocaleTemplateResolver::class, static function (ContainerInterface $c): LocaleTemplateResolver {
-        return new LocaleTemplateResolver($c->get('settings')['twig']['path']);
-    });
+    $container->set(
+        LocaleTemplateResolver::class,
+        static fn (ContainerInterface $c): LocaleTemplateResolver => new LocaleTemplateResolver(
+            $c->get('settings')['twig']['path'],
+        ),
+    );
 
-    $container->set(LocaleMiddleware::class, static function (ContainerInterface $c): LocaleMiddleware {
-        return new LocaleMiddleware(
+    $container->set(
+        LocaleMiddleware::class,
+        static fn (ContainerInterface $c): LocaleMiddleware => new LocaleMiddleware(
             $c->get(TranslationService::class),
-            $c->get(LocaleRouteService::class)
-        );
-    });
+            $c->get(LocaleRouteService::class),
+        ),
+    );
 
     $container->set(Twig::class, static function (ContainerInterface $c): Twig {
         $settings = $c->get('settings');
@@ -48,7 +54,7 @@ return static function (Container $container, array $settings): void {
 
         $twig->addExtension(new TranslationExtension(
             $c->get(TranslationService::class),
-            $c->get(LocaleRouteService::class)
+            $c->get(LocaleRouteService::class),
         ));
 
         return $twig;
@@ -62,7 +68,7 @@ return static function (Container $container, array $settings): void {
             $settings['host'],
             $settings['port'],
             $settings['database'],
-            $settings['charset']
+            $settings['charset'],
         );
 
         return new PDO($dsn, $settings['username'], $settings['password'], [
@@ -74,28 +80,26 @@ return static function (Container $container, array $settings): void {
 
     $container->set(MailService::class, static function (ContainerInterface $c): MailService {
         $settings = $c->get('settings')['mail'];
+
         return new MailService($settings, $c->get(Twig::class));
     });
 
-    $container->set(HomeController::class, static function (ContainerInterface $c): HomeController {
-        return new HomeController(
-            $c->get(Twig::class),
-            $c->get(LocaleTemplateResolver::class)
-        );
-    });
+    $container->set(HomeController::class, static fn (ContainerInterface $c): HomeController => new HomeController(
+        $c->get(Twig::class),
+        $c->get(LocaleTemplateResolver::class),
+    ));
 
-    $container->set(PageController::class, static function (ContainerInterface $c): PageController {
-        return new PageController(
-            $c->get(Twig::class),
-            $c->get(LocaleTemplateResolver::class)
-        );
-    });
+    $container->set(PageController::class, static fn (ContainerInterface $c): PageController => new PageController(
+        $c->get(Twig::class),
+        $c->get(LocaleTemplateResolver::class),
+    ));
 
-    $container->set(ContactController::class, static function (ContainerInterface $c): ContactController {
-        return new ContactController(
+    $container->set(
+        ContactController::class,
+        static fn (ContainerInterface $c): ContactController => new ContactController(
             $c->get(MailService::class),
             $c->get(TranslationService::class),
-            $c->get('settings')
-        );
-    });
+            $c->get('settings'),
+        ),
+    );
 };

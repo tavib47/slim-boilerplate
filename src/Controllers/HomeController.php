@@ -23,7 +23,7 @@ class HomeController
      */
     public function __construct(
         private readonly Twig $twig,
-        private readonly LocaleTemplateResolver $templateResolver
+        private readonly LocaleTemplateResolver $templateResolver,
     ) {
     }
 
@@ -43,7 +43,7 @@ class HomeController
         $templatePath = $this->templateResolver->resolve(
             'pages/home.twig',
             $locale,
-            $defaultLocale
+            $defaultLocale,
         );
 
         return $this->twig->render($response, $templatePath, [

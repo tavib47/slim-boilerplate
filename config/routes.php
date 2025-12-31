@@ -10,30 +10,30 @@ use Slim\Routing\RouteCollectorProxy;
 
 // Route definitions: 'name' => ['method' => ..., 'path' => ..., 'handler' => [...]]
 $routes = [
-    'home' => [
-        'method' => 'GET',
-        'path' => '/',
-        'handler' => [HomeController::class, 'index'],
-    ],
     'about' => [
+        'handler' => [PageController::class, 'show'],
         'method' => 'GET',
         'path' => '/about',
-        'handler' => [PageController::class, 'show'],
-    ],
-    'privacy' => [
-        'method' => 'GET',
-        'path' => '/privacy',
-        'handler' => [PageController::class, 'show'],
     ],
     'contact' => [
+        'handler' => [PageController::class, 'show'],
         'method' => 'GET',
         'path' => '/contact',
-        'handler' => [PageController::class, 'show'],
     ],
     'contact.submit' => [
+        'handler' => [ContactController::class, 'submit'],
         'method' => 'POST',
         'path' => '/contact',
-        'handler' => [ContactController::class, 'submit'],
+    ],
+    'home' => [
+        'handler' => [HomeController::class, 'index'],
+        'method' => 'GET',
+        'path' => '/',
+    ],
+    'privacy' => [
+        'handler' => [PageController::class, 'show'],
+        'method' => 'GET',
+        'path' => '/privacy',
     ],
 ];
 
@@ -50,9 +50,11 @@ return static function (App $app) use ($routes): void {
         string $locale,
         string $defaultLocale,
         array $routeSlugs,
-        bool $isGroup = true
+        bool $isGroup = true,
     ): void {
-        $nameSuffix = $locale !== $defaultLocale ? ".{$locale}" : '';
+        $nameSuffix = $locale !== $defaultLocale
+            ? ".{$locale}"
+            : '';
 
         foreach ($routes as $name => $route) {
             $method = $route['method'];
@@ -65,7 +67,9 @@ return static function (App $app) use ($routes): void {
                 // For routes like 'contact.submit', use the base name for slug lookup
                 $slugKey = explode('.', $name)[0];
                 $hasTranslation = $locale !== $defaultLocale && isset($routeSlugs[$slugKey][$locale]);
-                $translatedSlug = $hasTranslation ? $routeSlugs[$slugKey][$locale] : $slug;
+                $translatedSlug = $hasTranslation
+                    ? $routeSlugs[$slugKey][$locale]
+                    : $slug;
                 $path = '/' . $translatedSlug;
             } elseif ($isGroup) {
                 // Home route: use '' in groups, '/' otherwise
@@ -81,17 +85,19 @@ return static function (App $app) use ($routes): void {
 
     // Prefixed routes for other locales
     foreach ($supportedLocales as $locale) {
-        if ($locale !== $defaultLocale) {
-            // phpcs:ignore SlevomatCodingStandard.Functions.StaticClosure.ClosureNotStatic
-            $app->group("/{$locale}", function (RouteCollectorProxy $group) use (
-                $routes,
-                $locale,
-                $defaultLocale,
-                $routeSlugs,
-                $registerRoutes
-            ): void {
-                $registerRoutes($group, $routes, $locale, $defaultLocale, $routeSlugs);
-            });
+        if ($locale === $defaultLocale) {
+            continue;
         }
+
+		// phpcs:ignore SlevomatCodingStandard.Functions.StaticClosure.ClosureNotStatic
+        $app->group("/{$locale}", function (RouteCollectorProxy $group) use (
+            $routes,
+            $locale,
+            $defaultLocale,
+            $routeSlugs,
+            $registerRoutes,
+        ): void {
+            $registerRoutes($group, $routes, $locale, $defaultLocale, $routeSlugs);
+        });
     }
 };

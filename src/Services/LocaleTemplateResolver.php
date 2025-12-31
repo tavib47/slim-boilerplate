@@ -15,7 +15,7 @@ class LocaleTemplateResolver
      * @param string $templatesPath Path to templates directory
      */
     public function __construct(
-        private readonly string $templatesPath
+        private readonly string $templatesPath,
     ) {
     }
 

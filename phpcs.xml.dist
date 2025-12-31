@@ -18,120 +18,148 @@
     <rule ref="PSR12"/>
 
     <!-- ==================== -->
-    <!-- Slevomat Coding Standard -->
+    <!-- Slevomat Coding Standard (Full) -->
     <!-- ==================== -->
+    <rule ref="SlevomatCodingStandard">
+        <!-- REQUIRED: Slim controllers must accept $request/$response even if unused -->
+        <exclude name="SlevomatCodingStandard.Functions.UnusedParameter"/>
 
-    <!-- Type Hints -->
+        <!-- REQUIRED: Array shape syntax (array{key: type}) not supported by PHPCS parser -->
+        <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingTraversableTypeHintSpecification"/>
+
+        <!-- REQUIRED: We enforce documentation via Squiz, so these annotations are not "useless" -->
+        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.UselessAnnotation"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.UselessAnnotation"/>
+        <exclude name="SlevomatCodingStandard.Commenting.UselessFunctionDocComment"/>
+
+        <!-- REQUIRED: Squiz.Commenting requires multi-line docblocks, this conflicts -->
+        <exclude name="SlevomatCodingStandard.Commenting.RequireOneLineDocComment"/>
+        <exclude name="SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment"/>
+
+        <!-- CONFLICT: We use DisallowYodaComparison, cannot have both -->
+        <exclude name="SlevomatCodingStandard.ControlStructures.RequireYodaComparison"/>
+
+        <!-- CONFLICT: We use constructor property promotion (PHP 8.0 feature) -->
+        <exclude name="SlevomatCodingStandard.Classes.DisallowConstructorPropertyPromotion"/>
+
+        <!-- CONFLICT: Requires whitelisting namespaces, not practical -->
+        <exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces"/>
+
+        <!-- CONFLICT: Our src/ directory structure doesn't match App\ namespace directly -->
+        <exclude name="SlevomatCodingStandard.Files.TypeNameMatchesFileName"/>
+
+        <!-- CONFLICT: Cannot have both single-line and multi-line requirements -->
+        <exclude name="SlevomatCodingStandard.Classes.RequireSingleLineMethodSignature"/>
+        <exclude name="SlevomatCodingStandard.Classes.RequireMultiLineMethodSignature"/>
+
+        <!-- CONFLICT: We allow modern PHP features -->
+        <exclude name="SlevomatCodingStandard.ControlStructures.DisallowNullSafeObjectOperator"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.DisallowShortTernaryOperator"/>
+        <exclude name="SlevomatCodingStandard.Exceptions.DisallowNonCapturingCatch"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.DisallowEmpty"/>
+        <exclude name="SlevomatCodingStandard.PHP.DisallowReference"/>
+        <exclude name="SlevomatCodingStandard.Functions.DisallowNamedArguments"/>
+        <exclude name="SlevomatCodingStandard.Functions.DisallowArrowFunction"/>
+        <exclude name="SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators"/>
+
+        <!-- CONFLICT: Cannot require both trailing comma and no trailing comma -->
+        <exclude name="SlevomatCodingStandard.Functions.DisallowTrailingCommaInCall"/>
+        <exclude name="SlevomatCodingStandard.Functions.DisallowTrailingCommaInDeclaration"/>
+        <exclude name="SlevomatCodingStandard.Functions.DisallowTrailingCommaInClosureUse"/>
+
+        <!-- CONFLICT: Naming conventions are project-specific -->
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousErrorNaming"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousTraitNaming"/>
+
+        <!-- STYLE: Class structure preferences -->
+        <exclude name="SlevomatCodingStandard.Classes.RequireAbstractOrFinal"/>
+        <exclude name="SlevomatCodingStandard.Classes.EmptyLinesAroundClassBraces"/>
+        <exclude name="SlevomatCodingStandard.Classes.ClassStructure"/>
+        <exclude name="SlevomatCodingStandard.Classes.ClassLength"/>
+
+        <!-- STYLE: Fully qualified names add verbosity without benefit -->
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly"/>
+
+        <!-- STYLE: Whitespace/formatting preferences -->
+        <exclude name="SlevomatCodingStandard.Whitespaces.DuplicateSpaces"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.BlockControlStructureSpacing"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.JumpStatementsSpacing"/>
+        <exclude name="SlevomatCodingStandard.Functions.RequireSingleLineCall"/>
+        <exclude name="SlevomatCodingStandard.Functions.RequireMultiLineCall"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.RequireSingleLineCondition"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.RequireMultiLineCondition"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.RequireMultiLineTernaryOperator"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.NewWithoutParentheses"/>
+        <exclude name="SlevomatCodingStandard.Commenting.DisallowCommentAfterCode"/>
+        <exclude name="SlevomatCodingStandard.Commenting.DisallowOneLinePropertyDocComment"/>
+
+        <!-- STYLE: Array key ordering is too opinionated -->
+        <exclude name="SlevomatCodingStandard.Arrays.AlphabeticallySortedByKeys"/>
+
+        <!-- STYLE: Limits handled better by PHPStan or code review -->
+        <exclude name="SlevomatCodingStandard.Functions.FunctionLength"/>
+        <exclude name="SlevomatCodingStandard.Files.FileLength"/>
+        <exclude name="SlevomatCodingStandard.Files.LineLength"/>
+        <exclude name="SlevomatCodingStandard.Complexity.Cognitive"/>
+
+        <!-- STYLE: Early exit is a preference, not a requirement -->
+        <exclude name="SlevomatCodingStandard.ControlStructures.EarlyExit"/>
+
+        <!-- STYLE: mixed type is sometimes necessary for dynamic data -->
+        <exclude name="SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint"/>
+
+        <!-- STYLE: Number formatting is a preference -->
+        <exclude name="SlevomatCodingStandard.Numbers.RequireNumericLiteralSeparator"/>
+
+        <!-- STYLE: Attribute formatting preferences -->
+        <exclude name="SlevomatCodingStandard.Attributes.DisallowAttributesJoining"/>
+        <exclude name="SlevomatCodingStandard.Attributes.DisallowMultipleAttributesPerLine"/>
+        <exclude name="SlevomatCodingStandard.Attributes.RequireAttributeAfterDocComment"/>
+
+        <!-- STYLE: Operator preferences -->
+        <exclude name="SlevomatCodingStandard.Operators.RequireOnlyStandaloneIncrementAndDecrementOperators"/>
+        <exclude name="SlevomatCodingStandard.Operators.RequireCombinedAssignmentOperator"/>
+
+        <!-- STYLE: PHP assertion style -->
+        <exclude name="SlevomatCodingStandard.PHP.RequireExplicitAssertion"/>
+
+        <!-- REQUIRED: $_SESSION and $_ENV are necessary for session/config handling -->
+        <exclude name="SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable"/>
+    </rule>
+
+    <!-- Re-enable UnusedParameter but exclude controllers where Slim requires these params -->
+    <rule ref="SlevomatCodingStandard.Functions.UnusedParameter">
+        <exclude-pattern>src/Controllers/*</exclude-pattern>
+    </rule>
+
+    <!-- Configure specific Slevomat rules -->
     <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
         <properties>
             <property name="spacesCountAroundEqualsSign" value="0"/>
         </properties>
     </rule>
-    <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint">
-        <!-- Disable traversable type specification - too strict for arrays -->
-        <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification"/>
-    </rule>
-    <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint"/>
-    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHint">
-        <!-- Disable traversable type specification - too strict for arrays -->
-        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification"/>
-        <!-- Allow @return void for documentation completeness -->
-        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.UselessAnnotation"/>
-    </rule>
-    <rule ref="SlevomatCodingStandard.TypeHints.UselessConstantTypeHint"/>
 
-    <!-- Unused Code Detection -->
     <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
         <properties>
             <property name="searchAnnotations" value="true"/>
         </properties>
     </rule>
+
     <rule ref="SlevomatCodingStandard.Variables.UnusedVariable">
         <properties>
             <property name="ignoreUnusedValuesWhenOnlyKeysAreUsedInForeach" value="true"/>
         </properties>
     </rule>
-    <rule ref="SlevomatCodingStandard.Functions.UnusedParameter">
-        <!-- Exclude controllers - $request/$response are required by Slim interface -->
-        <exclude-pattern>src/Controllers/*</exclude-pattern>
-    </rule>
-    <rule ref="SlevomatCodingStandard.Namespaces.UseFromSameNamespace"/>
 
-    <!-- Namespaces & Imports -->
-    <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses"/>
-    <rule ref="SlevomatCodingStandard.Namespaces.RequireOneNamespaceInFile"/>
-    <rule ref="SlevomatCodingStandard.Namespaces.NamespaceDeclaration"/>
-    <rule ref="SlevomatCodingStandard.Namespaces.DisallowGroupUse"/>
-    <rule ref="SlevomatCodingStandard.Namespaces.UseDoesNotStartWithBackslash"/>
-
-    <!-- Classes & Methods -->
-    <rule ref="SlevomatCodingStandard.Classes.ClassConstantVisibility"/>
-    <rule ref="SlevomatCodingStandard.Classes.ModernClassNameReference"/>
-    <rule ref="SlevomatCodingStandard.Classes.TraitUseDeclaration"/>
-    <rule ref="SlevomatCodingStandard.Classes.TraitUseSpacing"/>
-
-    <!-- Control Structures -->
-    <rule ref="SlevomatCodingStandard.ControlStructures.DisallowYodaComparison"/>
-    <rule ref="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceOperator"/>
-    <rule ref="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceEqualOperator"/>
-    <rule ref="SlevomatCodingStandard.ControlStructures.UselessIfConditionWithReturn"/>
-    <rule ref="SlevomatCodingStandard.ControlStructures.UselessTernaryOperator"/>
-
-    <!-- Functions -->
-    <rule ref="SlevomatCodingStandard.Functions.StaticClosure"/>
-    <rule ref="SlevomatCodingStandard.Functions.UnusedInheritedVariablePassedToClosure"/>
-    <rule ref="SlevomatCodingStandard.Functions.UselessParameterDefaultValue"/>
-
-    <!-- PHP Features -->
-    <rule ref="SlevomatCodingStandard.PHP.UselessSemicolon"/>
-    <rule ref="SlevomatCodingStandard.PHP.UselessParentheses"/>
-    <rule ref="SlevomatCodingStandard.PHP.OptimizedFunctionsWithoutUnpacking"/>
-    <rule ref="SlevomatCodingStandard.PHP.ShortList"/>
-
-    <!-- Arrays -->
-    <rule ref="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation"/>
-    <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma"/>
-
-    <!-- Exceptions -->
-    <rule ref="SlevomatCodingStandard.Exceptions.DeadCatch"/>
-    <rule ref="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly"/>
-
-    <!-- Commenting -->
-    <rule ref="SlevomatCodingStandard.Commenting.EmptyComment"/>
-    <rule ref="SlevomatCodingStandard.Commenting.UselessInheritDocComment"/>
-
-    <!-- ==================== -->
-    <!-- Documentation Requirements (Symfony/Drupal style) -->
-    <!-- ==================== -->
-
-    <!-- Require class documentation -->
-    <rule ref="Squiz.Commenting.ClassComment">
-        <!-- Allow classes without @package, @author, etc. -->
-        <exclude name="Squiz.Commenting.ClassComment.TagNotAllowed"/>
-    </rule>
-
-    <!-- Require function/method documentation -->
-    <rule ref="Squiz.Commenting.FunctionComment">
-        <!-- Allow @inheritDoc without full documentation -->
-        <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
-        <!-- Don't require type hint in docblock when native type exists -->
-        <exclude name="Squiz.Commenting.FunctionComment.ScalarTypeHintMissing"/>
-        <exclude name="Squiz.Commenting.FunctionComment.TypeHintMissing"/>
-        <!-- Allow short descriptions without period -->
-        <exclude name="Squiz.Commenting.FunctionComment.ParamCommentFullStop"/>
-        <exclude name="Squiz.Commenting.FunctionComment.ThrowsNoFullStop"/>
-        <!-- Don't require spacing alignment -->
-        <exclude name="Squiz.Commenting.FunctionComment.SpacingAfterParamType"/>
-        <exclude name="Squiz.Commenting.FunctionComment.SpacingAfterParamName"/>
-    </rule>
-
-    <!-- Require property/variable documentation -->
-    <rule ref="Squiz.Commenting.VariableComment">
-        <!-- Don't require @var when property has native type hint -->
-        <exclude name="Squiz.Commenting.VariableComment.MissingVar"/>
-    </rule>
-
-    <!-- Ensure doc comment formatting follows Symfony/Drupal conventions -->
     <rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
         <properties>
             <property name="linesCountBeforeFirstContent" value="0"/>
@@ -145,5 +173,37 @@
                 <element value="@var"/>
             </property>
         </properties>
+    </rule>
+
+    <!-- ==================== -->
+    <!-- Documentation Requirements (Squiz) -->
+    <!-- ==================== -->
+
+    <!-- Require class documentation -->
+    <rule ref="Squiz.Commenting.ClassComment">
+        <!-- Slim/PHP-DI don't require @package, @author, etc. -->
+        <exclude name="Squiz.Commenting.ClassComment.TagNotAllowed"/>
+    </rule>
+
+    <!-- Require function/method documentation -->
+    <rule ref="Squiz.Commenting.FunctionComment">
+        <!-- Native type hints provide this info, description is enough -->
+        <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
+        <exclude name="Squiz.Commenting.FunctionComment.ScalarTypeHintMissing"/>
+        <exclude name="Squiz.Commenting.FunctionComment.TypeHintMissing"/>
+        <!-- Period requirement is too strict for short descriptions -->
+        <exclude name="Squiz.Commenting.FunctionComment.ParamCommentFullStop"/>
+        <exclude name="Squiz.Commenting.FunctionComment.ThrowsNoFullStop"/>
+        <!-- Alignment handled by IDE/editor -->
+        <exclude name="Squiz.Commenting.FunctionComment.SpacingAfterParamType"/>
+        <exclude name="Squiz.Commenting.FunctionComment.SpacingAfterParamName"/>
+        <!-- CONFLICT: Squiz wants "boolean", Slevomat wants "bool" - use short form -->
+        <exclude name="Squiz.Commenting.FunctionComment.InvalidReturn"/>
+    </rule>
+
+    <!-- Require property/variable documentation -->
+    <rule ref="Squiz.Commenting.VariableComment">
+        <!-- Native type hints provide this info -->
+        <exclude name="Squiz.Commenting.VariableComment.MissingVar"/>
     </rule>
 </ruleset>

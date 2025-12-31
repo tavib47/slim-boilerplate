@@ -24,7 +24,7 @@ class PageController
      */
     public function __construct(
         private readonly Twig $twig,
-        private readonly LocaleTemplateResolver $templateResolver
+        private readonly LocaleTemplateResolver $templateResolver,
     ) {
     }
 
@@ -56,7 +56,7 @@ class PageController
         $templatePath = $this->templateResolver->resolve(
             "pages/{$template}.twig",
             $locale,
-            $defaultLocale
+            $defaultLocale,
         );
 
         return $this->twig->render($response, $templatePath, [

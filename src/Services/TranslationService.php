@@ -20,6 +20,7 @@ class TranslationService
 
     /** @var string Default application locale */
     private string $defaultLocale;
+
     /** @var list<string> */
     private array $supportedLocales;
 

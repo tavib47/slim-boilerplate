@@ -21,7 +21,7 @@ class MailService
      */
     public function __construct(
         private readonly array $settings,
-        private readonly Twig $twig
+        private readonly Twig $twig,
     ) {
     }
 
@@ -33,7 +33,7 @@ class MailService
      * @param string      $body    Email body content
      * @param string|null $replyTo Optional reply-to email address
      *
-     * @return boolean True if email was sent successfully, false otherwise
+     * @return bool True if email was sent successfully, false otherwise
      */
     public function send(string $to, string $subject, string $body, ?string $replyTo = null): bool
     {

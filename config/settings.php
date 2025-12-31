@@ -9,54 +9,54 @@ $dotenv->load();
 
 return [
     'app' => [
-        'env' => $_ENV['APP_ENV'] ?? 'production',
         'debug' => filter_var($_ENV['APP_DEBUG'] ?? false, FILTER_VALIDATE_BOOLEAN),
+        'env' => $_ENV['APP_ENV'] ?? 'production',
         'url' => $_ENV['APP_URL'] ?? 'http://localhost',
-    ],
-    'database' => [
-        'host' => $_ENV['DB_HOST'] ?? 'localhost',
-        'port' => (int) ($_ENV['DB_PORT'] ?? 3306),
-        'database' => $_ENV['DB_DATABASE'] ?? '',
-        'username' => $_ENV['DB_USERNAME'] ?? '',
-        'password' => $_ENV['DB_PASSWORD'] ?? '',
-        'charset' => 'utf8mb4',
-    ],
-    'mail' => [
-        'host' => $_ENV['MAIL_HOST'] ?? '',
-        'port' => (int) ($_ENV['MAIL_PORT'] ?? 587),
-        'username' => $_ENV['MAIL_USERNAME'] ?? '',
-        'password' => $_ENV['MAIL_PASSWORD'] ?? '',
-        'from_address' => $_ENV['MAIL_FROM_ADDRESS'] ?? '',
-        'from_name' => $_ENV['MAIL_FROM_NAME'] ?? '',
     ],
     'contact' => [
         'email' => $_ENV['CONTACT_EMAIL'] ?? '',
     ],
-    'twig' => [
-        'path' => dirname(__DIR__) . '/templates',
-        'cache' => dirname(__DIR__) . '/var/cache',
+    'database' => [
+        'charset' => 'utf8mb4',
+        'database' => $_ENV['DB_DATABASE'] ?? '',
+        'host' => $_ENV['DB_HOST'] ?? 'localhost',
+        'password' => $_ENV['DB_PASSWORD'] ?? '',
+        'port' => (int) ($_ENV['DB_PORT'] ?? 3306),
+        'username' => $_ENV['DB_USERNAME'] ?? '',
     ],
     'locale' => [
       'default_locale' => 'en',
-      'supported_locales' => ['en', 'ro', 'fr', 'es'],
       'fallback_locales' => ['en'],
-      'translations_path' => dirname(__DIR__) . '/translations',
       'route_slugs' => [
         'about' => [
-          'ro' => 'despre-noi',
-          'fr' => 'a-propos',
           'es' => 'acerca-de',
-        ],
-        'privacy' => [
-          'ro' => 'confidentialitate',
-          'fr' => 'confidentialite',
-          'es' => 'privacidad',
+          'fr' => 'a-propos',
+          'ro' => 'despre-noi',
         ],
         'contact' => [
-          'ro' => 'contact',
-          'fr' => 'contact',
           'es' => 'contacto',
+          'fr' => 'contact',
+          'ro' => 'contact',
+        ],
+        'privacy' => [
+          'es' => 'privacidad',
+          'fr' => 'confidentialite',
+          'ro' => 'confidentialitate',
         ],
       ],
+      'supported_locales' => ['en', 'ro', 'fr', 'es'],
+      'translations_path' => dirname(__DIR__) . '/translations',
+    ],
+    'mail' => [
+        'from_address' => $_ENV['MAIL_FROM_ADDRESS'] ?? '',
+        'from_name' => $_ENV['MAIL_FROM_NAME'] ?? '',
+        'host' => $_ENV['MAIL_HOST'] ?? '',
+        'password' => $_ENV['MAIL_PASSWORD'] ?? '',
+        'port' => (int) ($_ENV['MAIL_PORT'] ?? 587),
+        'username' => $_ENV['MAIL_USERNAME'] ?? '',
+    ],
+    'twig' => [
+        'cache' => dirname(__DIR__) . '/var/cache',
+        'path' => dirname(__DIR__) . '/templates',
     ],
 ];
