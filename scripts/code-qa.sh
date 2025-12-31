@@ -5,7 +5,7 @@ cd "$SCRIPT_DIR/.."
 
 source scripts/utils.sh
 
-preCommand=$([ "$DDEV" == "true" ] && echo "ddev exec" || echo "")
+preCommand=$([ "$DDEV" == "true" ] && [ "$IS_DDEV_PROJECT" != "true" ] && echo "ddev exec" || echo "")
 status=0
 
 # PHPCS (uses phpcs.xml.dist for configuration)
