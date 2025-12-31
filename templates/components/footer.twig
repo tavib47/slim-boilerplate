@@ -1,9 +1,57 @@
-<footer class="site-footer">
-    <div class="container d-flex justify-content-between align-items-center flex-wrap gap-3">
-        <p class="mb-0">&copy; {{ "now"|date("Y") }} Slim App. All rights reserved.</p>
-        <ul class="nav">
-            <li class="nav-item"><a href="/privacy" class="nav-link">Privacy Policy</a></li>
-            <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
-        </ul>
+<footer class="footer mt-auto bg-body-tertiary">
+    <div class="container py-3 my-3">
+        <div class="row">
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a href="{{ route_localized('home', locale) }}"
+                       class="nav-link px-2 text-body-secondary">
+                        {{ trans('nav.home') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route_localized('about', locale) }}"
+                       class="nav-link px-2 text-body-secondary">
+                        {{ trans('nav.about') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route_localized('privacy', locale) }}"
+                       class="nav-link px-2 text-body-secondary">
+                        {{ trans('nav.privacy') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route_localized('contact', locale) }}"
+                       class="nav-link px-2 text-body-secondary">
+                        {{ trans('nav.contact') }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="d-flex flex-column flex-sm-row justify-content-between py-4 mt-4 mx-4 border-top">
+            <p>Open-source, built with passion by <a href="https://github.com/tavib47" target="_blank">tavib47</a></p>
+            <ul class="list-unstyled d-flex">
+                <li class="ms-3">
+                    <a class="link-body-emphasis" href="https://github.com/tavib47" target="_blank" aria-label="GitHub">
+                        <img src="/images/socials/sketched/33.png" height="24" alt="GitHub">
+                    </a>
+                </li>
+                <li class="ms-3">
+                    <a class="link-body-emphasis" href="https://www.linkedin.com/in/octavian-belu" target="_blank" aria-label="LinkedIn">
+                        <img src="/images/socials/sketched/7.png" height="24" alt="LinkedIn">
+                    </a>
+                </li>
+                <li class="ms-3">
+                    <a class="link-body-emphasis" href="https://www.facebook.com/tavibelu" target="_blank" aria-label="Facebook">
+                        <img src="/images/socials/sketched/1.png" height="24" alt="Facebook">
+                    </a>
+                </li>
+                <li class="ms-3">
+                    <a class="link-body-emphasis" href="https://www.instagram.com/tavib47" target="_blank" aria-label="Instagram">
+                        <img src="/images/socials/sketched/4.png" height="24" alt="Instagram">
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </footer>
