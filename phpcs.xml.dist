@@ -117,6 +117,9 @@
         <!-- STYLE: mixed type is sometimes necessary for dynamic data -->
         <exclude name="SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint"/>
 
+        <!-- DEPRECATED: Replaced by DNF types in newer versions -->
+        <exclude name="SlevomatCodingStandard.TypeHints.UnionTypeHintFormat"/>
+
         <!-- STYLE: Number formatting is a preference -->
         <exclude name="SlevomatCodingStandard.Numbers.RequireNumericLiteralSeparator"/>
 
