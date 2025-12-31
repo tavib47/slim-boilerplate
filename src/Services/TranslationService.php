@@ -12,24 +12,35 @@ use Symfony\Component\Translation\Translator;
  */
 class TranslationService
 {
-    /** @var Translator Symfony translator instance */
+    /**
+     * Symfony translator instance.
+     */
     private Translator $translator;
 
-    /** @var string Currently active locale */
+    /**
+     * Currently active locale.
+     */
     private string $currentLocale;
 
-    /** @var string Default application locale */
+    /**
+     * Default application locale.
+     */
     private string $defaultLocale;
 
-    /** @var list<string> */
+    /**
+     * Supported locale codes.
+     *
+     * @var list<string>
+     */
     private array $supportedLocales;
 
     /**
      * Creates a new TranslationService instance.
      *
-     * @param array<string, mixed> $config Translation configuration with keys:
-     *                                      default_locale, supported_locales,
-     *                                      fallback_locales, translations_path
+     * @param array<string, mixed> $config
+     *   Translation configuration with keys:
+     *   default_locale, supported_locales,
+     *                                      fallback_locales, translations_path.
      */
     public function __construct(array $config)
     {
@@ -52,7 +63,8 @@ class TranslationService
     /**
      * Sets the current locale for translations.
      *
-     * @param string $locale Locale code to set
+     * @param string $locale
+     *   Locale code to set.
      *
      * @return void
      */
@@ -97,9 +109,12 @@ class TranslationService
     /**
      * Translates a message string.
      *
-     * @param string                $id         Message identifier
-     * @param array<string, string> $parameters Placeholder replacements
-     * @param string|null           $domain     Translation domain
+     * @param string $id
+     *   Message identifier.
+     * @param array<string, string> $parameters
+     *   Placeholder replacements.
+     * @param string|null $domain
+     *   Translation domain.
      *
      * @return string Translated message
      */

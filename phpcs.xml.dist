@@ -176,34 +176,23 @@
     </rule>
 
     <!-- ==================== -->
-    <!-- Documentation Requirements (Squiz) -->
+    <!-- Documentation Requirements (Drupal style) -->
     <!-- ==================== -->
 
     <!-- Require class documentation -->
-    <rule ref="Squiz.Commenting.ClassComment">
-        <!-- Slim/PHP-DI don't require @package, @author, etc. -->
-        <exclude name="Squiz.Commenting.ClassComment.TagNotAllowed"/>
+    <rule ref="Drupal.Commenting.ClassComment"/>
+
+    <!-- Require function/method documentation with description on new line -->
+    <rule ref="Drupal.Commenting.FunctionComment">
+        <!-- Don't require @param description when native types are clear -->
+        <exclude name="Drupal.Commenting.FunctionComment.MissingParamComment"/>
+        <!-- Don't require @return description when native types are clear -->
+        <exclude name="Drupal.Commenting.FunctionComment.MissingReturnComment"/>
     </rule>
 
-    <!-- Require function/method documentation -->
-    <rule ref="Squiz.Commenting.FunctionComment">
-        <!-- Native type hints provide this info, description is enough -->
-        <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
-        <exclude name="Squiz.Commenting.FunctionComment.ScalarTypeHintMissing"/>
-        <exclude name="Squiz.Commenting.FunctionComment.TypeHintMissing"/>
-        <!-- Period requirement is too strict for short descriptions -->
-        <exclude name="Squiz.Commenting.FunctionComment.ParamCommentFullStop"/>
-        <exclude name="Squiz.Commenting.FunctionComment.ThrowsNoFullStop"/>
-        <!-- Alignment handled by IDE/editor -->
-        <exclude name="Squiz.Commenting.FunctionComment.SpacingAfterParamType"/>
-        <exclude name="Squiz.Commenting.FunctionComment.SpacingAfterParamName"/>
-        <!-- CONFLICT: Squiz wants "boolean", Slevomat wants "bool" - use short form -->
-        <exclude name="Squiz.Commenting.FunctionComment.InvalidReturn"/>
-    </rule>
+    <!-- Require docblock formatting -->
+    <rule ref="Drupal.Commenting.DocComment"/>
 
-    <!-- Require property/variable documentation -->
-    <rule ref="Squiz.Commenting.VariableComment">
-        <!-- Native type hints provide this info -->
-        <exclude name="Squiz.Commenting.VariableComment.MissingVar"/>
-    </rule>
+    <!-- Variable documentation -->
+    <rule ref="Drupal.Commenting.VariableComment"/>
 </ruleset>

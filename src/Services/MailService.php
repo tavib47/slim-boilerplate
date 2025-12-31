@@ -16,8 +16,10 @@ class MailService
     /**
      * Creates a new MailService instance.
      *
-     * @param array<string, mixed> $settings Mail configuration settings
-     * @param Twig                 $twig     Twig view renderer for email templates
+     * @param array<string, mixed> $settings
+     *   Mail configuration settings.
+     * @param Twig $twig
+     *   Twig view renderer for email templates.
      */
     public function __construct(
         private readonly array $settings,
@@ -28,10 +30,14 @@ class MailService
     /**
      * Sends an email message.
      *
-     * @param string      $to      Recipient email address
-     * @param string      $subject Email subject
-     * @param string      $body    Email body content
-     * @param string|null $replyTo Optional reply-to email address
+     * @param string $to
+     *   Recipient email address.
+     * @param string $subject
+     *   Email subject.
+     * @param string $body
+     *   Email body content.
+     * @param string|null $replyTo
+     *   Optional reply-to email address.
      *
      * @return bool True if email was sent successfully, false otherwise
      */

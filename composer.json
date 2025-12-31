@@ -16,6 +16,7 @@
     },
     "require-dev": {
         "brainmaestro/composer-git-hooks": "^3.0",
+        "drupal/coder": "^8.3",
         "phpstan/extension-installer": "*",
         "phpstan/phpstan": "*",
         "slevomat/coding-standard": "*",
@@ -42,6 +43,7 @@
         "phpcbf": "phpcbf",
         "phpstan": "phpstan analyse",
         "code-qa": "scripts/code-qa.sh",
+        "codeqa": "./scripts/code-qa.sh",
         "theme:build": "npm run sass:build",
         "theme:dev": "npm run sass:dev",
         "theme:watch": "npm run sass:watch"

@@ -18,8 +18,10 @@ class TranslationExtension extends AbstractExtension implements GlobalsInterface
     /**
      * Creates a new TranslationExtension instance.
      *
-     * @param TranslationService $translationService Translation service
-     * @param LocaleRouteService $localeRouteService Locale route service
+     * @param TranslationService $translationService
+     *   Translation service.
+     * @param LocaleRouteService $localeRouteService
+     *   Locale route service.
      */
     public function __construct(
         private readonly TranslationService $translationService,
@@ -58,9 +60,12 @@ class TranslationExtension extends AbstractExtension implements GlobalsInterface
     /**
      * Translates a message string.
      *
-     * @param string                $id         Message identifier
-     * @param array<string, string> $parameters Placeholder replacements
-     * @param string|null           $domain     Translation domain
+     * @param string $id
+     *   Message identifier.
+     * @param array<string, string> $parameters
+     *   Placeholder replacements.
+     * @param string|null $domain
+     *   Translation domain.
      *
      * @return string Translated message
      */
@@ -72,8 +77,10 @@ class TranslationExtension extends AbstractExtension implements GlobalsInterface
     /**
      * Generates URL for a route in a specific locale.
      *
-     * @param string      $routeName Route name
-     * @param string|null $locale    Target locale (defaults to current)
+     * @param string $routeName
+     *   Route name.
+     * @param string|null $locale
+     *   Target locale (defaults to current)
      *
      * @return string Localized route path
      */
@@ -86,7 +93,8 @@ class TranslationExtension extends AbstractExtension implements GlobalsInterface
     /**
      * Gets all localized URLs for current route for language switcher.
      *
-     * @param string $currentRouteName Current route name
+     * @param string $currentRouteName
+     *   Current route name.
      *
      * @return array<string, string> Locale to URL mapping
      */

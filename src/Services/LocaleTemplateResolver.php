@@ -12,7 +12,8 @@ class LocaleTemplateResolver
     /**
      * Creates a new LocaleTemplateResolver instance.
      *
-     * @param string $templatesPath Path to templates directory
+     * @param string $templatesPath
+     *   Path to templates directory.
      */
     public function __construct(
         private readonly string $templatesPath,
@@ -24,11 +25,14 @@ class LocaleTemplateResolver
      *
      * For locale 'ro' and template 'pages/about.twig':
      * 1. Check: templates/pages/ro/about.twig
-     * 2. Fallback: templates/pages/about.twig
+     * 2. Fallback: templates/pages/about.twig.
      *
-     * @param string $template      Base template path
-     * @param string $locale        Current locale
-     * @param string $defaultLocale Default locale
+     * @param string $template
+     *   Base template path.
+     * @param string $locale
+     *   Current locale.
+     * @param string $defaultLocale
+     *   Default locale.
      *
      * @return string Resolved template path
      */

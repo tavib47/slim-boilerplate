@@ -19,8 +19,10 @@ class LocaleMiddleware implements MiddlewareInterface
     /**
      * Creates a new LocaleMiddleware instance.
      *
-     * @param TranslationService  $translationService  Translation service
-     * @param LocaleRouteService  $localeRouteService  Locale route service
+     * @param TranslationService $translationService
+     *   Translation service.
+     * @param LocaleRouteService $localeRouteService
+     *   Locale route service.
      */
     public function __construct(
         private readonly TranslationService $translationService,
@@ -31,8 +33,10 @@ class LocaleMiddleware implements MiddlewareInterface
     /**
      * Processes the request and detects locale from URL prefix.
      *
-     * @param ServerRequestInterface  $request HTTP request
-     * @param RequestHandlerInterface $handler Request handler
+     * @param ServerRequestInterface $request
+     *   HTTP request.
+     * @param RequestHandlerInterface $handler
+     *   Request handler.
      *
      * @return ResponseInterface HTTP response
      */

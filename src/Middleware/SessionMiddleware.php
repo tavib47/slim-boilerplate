@@ -17,8 +17,10 @@ class SessionMiddleware implements MiddlewareInterface
     /**
      * Processes the request and ensures session is started.
      *
-     * @param ServerRequestInterface  $request HTTP request
-     * @param RequestHandlerInterface $handler Request handler
+     * @param ServerRequestInterface $request
+     *   HTTP request.
+     * @param RequestHandlerInterface $handler
+     *   Request handler.
      *
      * @return ResponseInterface HTTP response
      */
@@ -34,8 +36,10 @@ class SessionMiddleware implements MiddlewareInterface
     /**
      * Adds a flash message to the session.
      *
-     * @param string $type    Message type (e.g., 'success', 'error')
-     * @param string $message Message content
+     * @param string $type
+     *   Message type (e.g., 'success', 'error')
+     * @param string $message
+     *   Message content.
      *
      * @return void
      */
@@ -59,7 +63,8 @@ class SessionMiddleware implements MiddlewareInterface
     /**
      * Stores form data in the session for repopulation after errors.
      *
-     * @param array<string, mixed> $data Form field values
+     * @param array<string, mixed> $data
+     *   Form field values.
      *
      * @return void
      */

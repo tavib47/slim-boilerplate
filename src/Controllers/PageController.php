@@ -19,8 +19,10 @@ class PageController
     /**
      * Creates a new PageController instance.
      *
-     * @param Twig                   $twig             Twig view renderer
-     * @param LocaleTemplateResolver $templateResolver Template resolver for locale-specific templates
+     * @param Twig $twig
+     *   Twig view renderer.
+     * @param LocaleTemplateResolver $templateResolver
+     *   Template resolver for locale-specific templates.
      */
     public function __construct(
         private readonly Twig $twig,
@@ -31,8 +33,10 @@ class PageController
     /**
      * Renders a static page based on the current route name.
      *
-     * @param Request  $request  HTTP request
-     * @param Response $response HTTP response
+     * @param Request $request
+     *   HTTP request.
+     * @param Response $response
+     *   HTTP response.
      *
      * @return Response Rendered page response
      */
