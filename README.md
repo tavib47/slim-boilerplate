@@ -6,8 +6,8 @@ A modern PHP boilerplate built with Slim Framework 4 and Twig templating, pre-co
 
 - [PHP](https://www.php.net/downloads.php)
 - [Composer](https://getcomposer.org/download)
-- [DDEV](https://ddev.readthedocs.io/en/stable/)
 - [Docker](https://www.docker.com/)
+- [DDEV](https://ddev.readthedocs.io/en/stable/)
 - [mkcert](https://github.com/FiloSottile/mkcert)
 
 ## Quick Start
