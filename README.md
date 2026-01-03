@@ -4,15 +4,17 @@ A modern PHP boilerplate built with Slim Framework 4 and Twig templating, pre-co
 
 ## Prerequisites
 
-- [DDEV](https://ddev.readthedocs.io/en/stable/) v1.22.0 or higher
-- [Docker](https://www.docker.com/) (or alternative like OrbStack, Colima)
-- [mkcert](https://github.com/FiloSottile/mkcert) (for local SSL certificates)
+- [PHP](https://www.php.net/downloads.php)
+- [Composer](https://getcomposer.org/download)
+- [DDEV](https://ddev.readthedocs.io/en/stable/)
+- [Docker](https://www.docker.com/)
+- [mkcert](https://github.com/FiloSottile/mkcert)
 
 ## Quick Start
 
 1. Create a project:
    ```bash
-   composer create-project tavib47/slim-boilerplate my-project
+   composer create-project tavib47/slim-boilerplate my-project --ignore-platform-reqs
    cd my-project
    ```
 
