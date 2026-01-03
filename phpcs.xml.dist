@@ -198,4 +198,9 @@
 
     <!-- Variable documentation -->
     <rule ref="Drupal.Commenting.VariableComment"/>
+
+    <!-- ==================== -->
+    <!-- Array Formatting -->
+    <!-- ==================== -->
+    <rule ref="Generic.Arrays.ArrayIndent"/>
 </ruleset>

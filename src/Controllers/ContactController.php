@@ -88,9 +88,9 @@ class ContactController
             SessionMiddleware::flash('success', $successMessage);
         } else {
             SessionMiddleware::setFormData([
-              'name' => $name,
-              'email' => $email,
-              'message' => $message,
+                'name' => $name,
+                'email' => $email,
+                'message' => $message,
             ]);
             $errorMessage = $this->translator->trans('Failed to send message. Please try again later.');
             SessionMiddleware::flash('error', $errorMessage);

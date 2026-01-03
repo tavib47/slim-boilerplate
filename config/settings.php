@@ -25,27 +25,27 @@ return [
         'username' => $_ENV['DB_USERNAME'] ?? '',
     ],
     'locale' => [
-      'default_locale' => 'en',
-      'fallback_locales' => ['en'],
-      'route_slugs' => [
-        'about' => [
-          'es' => 'acerca-de',
-          'fr' => 'a-propos',
-          'ro' => 'despre-noi',
+        'default_locale' => 'en',
+        'fallback_locales' => ['en'],
+        'route_slugs' => [
+            'about' => [
+                'es' => 'acerca-de',
+                'fr' => 'a-propos',
+                'ro' => 'despre-noi',
+            ],
+            'contact' => [
+                'es' => 'contacto',
+                'fr' => 'contact',
+                'ro' => 'contact',
+            ],
+            'privacy' => [
+                'es' => 'privacidad',
+                'fr' => 'confidentialite',
+                'ro' => 'confidentialitate',
+            ],
         ],
-        'contact' => [
-          'es' => 'contacto',
-          'fr' => 'contact',
-          'ro' => 'contact',
-        ],
-        'privacy' => [
-          'es' => 'privacidad',
-          'fr' => 'confidentialite',
-          'ro' => 'confidentialitate',
-        ],
-      ],
-      'supported_locales' => ['en', 'ro', 'fr', 'es'],
-      'translations_path' => dirname(__DIR__) . '/translations',
+        'supported_locales' => ['en', 'ro', 'fr', 'es'],
+        'translations_path' => dirname(__DIR__) . '/translations',
     ],
     'mail' => [
         'from_address' => $_ENV['MAIL_FROM_ADDRESS'] ?? '',
