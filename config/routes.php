@@ -39,10 +39,10 @@ $routes = [
 
 return static function (App $app) use ($routes): void {
     $settings = $app->getContainer()->get('settings');
-    $localeConfig = $settings['locale'];
-    $defaultLocale = $localeConfig['default_locale'];
-    $supportedLocales = $localeConfig['supported_locales'];
-    $routeSlugs = $localeConfig['route_slugs'];
+    $localeConfig = $settings['locale'] ?? [];
+    $defaultLocale = $localeConfig['default_locale'] ?? 'en';
+    $supportedLocales = $localeConfig['supported_locales'] ?? [$defaultLocale];
+    $routeSlugs = $localeConfig['route_slugs'] ?? [];
 
     $registerRoutes = static function (
         RouteCollectorProxy $group,
