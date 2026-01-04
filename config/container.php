@@ -13,6 +13,7 @@ use App\Services\TranslationService;
 use App\Twig\TranslationExtension;
 use DI\Container;
 use Psr\Container\ContainerInterface;
+use Slim\Interfaces\RouteParserInterface;
 use Slim\Views\Twig;
 
 return static function (Container $container, array $settings): void {
@@ -54,7 +55,7 @@ return static function (Container $container, array $settings): void {
 
         $twig->addExtension(new TranslationExtension(
             $c->get(TranslationService::class),
-            $c->get(LocaleRouteService::class),
+            $c->get(RouteParserInterface::class),
         ));
 
         return $twig;

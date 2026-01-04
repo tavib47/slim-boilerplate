@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
-use App\Services\LocaleRouteService;
 use App\Services\TranslationService;
+use Slim\Interfaces\RouteParserInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 use Twig\TwigFunction;
@@ -20,12 +20,12 @@ class TranslationExtension extends AbstractExtension implements GlobalsInterface
      *
      * @param TranslationService $translationService
      *   Translation service.
-     * @param LocaleRouteService $localeRouteService
-     *   Locale route service.
+     * @param RouteParserInterface $routeParser
+     *   Slim route parser.
      */
     public function __construct(
         private readonly TranslationService $translationService,
-        private readonly LocaleRouteService $localeRouteService,
+        private readonly RouteParserInterface $routeParser,
     ) {
     }
 
@@ -87,7 +87,14 @@ class TranslationExtension extends AbstractExtension implements GlobalsInterface
     public function routeLocalized(string $routeName, ?string $locale = null): string
     {
         $locale ??= $this->translationService->getLocale();
-        return $this->localeRouteService->getLocalizedPath($routeName, $locale);
+        $defaultLocale = $this->translationService->getDefaultLocale();
+
+        // Build the full route name with locale suffix for non-default locales
+        $fullRouteName = $locale === $defaultLocale
+            ? $routeName
+            : $routeName . '.' . $locale;
+
+        return $this->routeParser->urlFor($fullRouteName);
     }
 
     /**
@@ -100,6 +107,16 @@ class TranslationExtension extends AbstractExtension implements GlobalsInterface
      */
     public function languageSwitcherUrls(string $currentRouteName): array
     {
-        return $this->localeRouteService->getAllLocalizedPaths($currentRouteName);
+        $paths = [];
+        $defaultLocale = $this->translationService->getDefaultLocale();
+
+        foreach ($this->translationService->getSupportedLocales() as $locale) {
+            $fullRouteName = $locale === $defaultLocale
+                ? $currentRouteName
+                : $currentRouteName . '.' . $locale;
+            $paths[$locale] = $this->routeParser->urlFor($fullRouteName);
+        }
+
+        return $paths;
     }
 }
