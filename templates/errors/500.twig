@@ -1,0 +1,29 @@
+{% extends 'layout/base.twig' %}
+
+{% block title %}Server Error{% endblock %}
+{% block meta_description %}Something went wrong on our end.{% endblock %}
+
+{% block content %}
+<div class="error-page">
+    <div class="error-code">500</div>
+    <h1>Server Error</h1>
+    <p>Something went wrong on our end. Please try again later.</p>
+    <a href="/" class="btn btn-primary">Go Home</a>
+</div>
+
+{% if debug is defined %}
+<div class="error-debug mt-5">
+    <h5>Debug Information</h5>
+    <dl class="row small">
+        <dt class="col-sm-2">Exception</dt>
+        <dd class="col-sm-10"><code>{{ debug.exception }}</code></dd>
+        <dt class="col-sm-2">File</dt>
+        <dd class="col-sm-10"><code>{{ debug.file }}:{{ debug.line }}</code></dd>
+    </dl>
+    <details>
+        <summary>Stack Trace</summary>
+        <pre class="bg-light p-3 small overflow-auto">{{ debug.trace }}</pre>
+    </details>
+</div>
+{% endif %}
+{% endblock %}
