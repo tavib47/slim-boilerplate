@@ -10,10 +10,20 @@ use Slim\Routing\RouteCollectorProxy;
 
 // Route definitions: 'name' => ['method' => ..., 'path' => ..., 'handler' => [...]]
 $routes = [
+    'home' => [
+        'handler' => [HomeController::class, 'index'],
+        'method' => 'GET',
+        'path' => '/',
+    ],
     'about' => [
         'handler' => [PageController::class, 'show'],
         'method' => 'GET',
         'path' => '/about',
+    ],
+    'privacy' => [
+        'handler' => [PageController::class, 'show'],
+        'method' => 'GET',
+        'path' => '/privacy',
     ],
     'contact' => [
         'handler' => [PageController::class, 'show'],
@@ -24,16 +34,6 @@ $routes = [
         'handler' => [ContactController::class, 'submit'],
         'method' => 'POST',
         'path' => '/contact',
-    ],
-    'home' => [
-        'handler' => [HomeController::class, 'index'],
-        'method' => 'GET',
-        'path' => '/',
-    ],
-    'privacy' => [
-        'handler' => [PageController::class, 'show'],
-        'method' => 'GET',
-        'path' => '/privacy',
     ],
 ];
 
