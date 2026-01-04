@@ -14,7 +14,7 @@ A modern PHP boilerplate built with Slim Framework 4 and Twig templating, pre-co
 
 1. Create a project:
    ```bash
-   composer create-project tavib47/slim-boilerplate my-project --ignore-platform-reqs
+   composer create-project --ignore-platform-reqs tavib47/slim-boilerplate my-project
    cd my-project
    ```
 
